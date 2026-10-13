@@ -68,3 +68,18 @@ def test_invalid_key_fails_fast():
     with pytest.raises(gemini.GeminiError, match="403"):
         asyncio.run(gemini.generate(session, "p"))
     assert session.models == ["a"]
+
+
+def test_total_budget_caps_each_call(monkeypatch):
+    monkeypatch.setattr(gemini, "TOTAL_BUDGET", 4)
+    timeouts = []
+
+    async def slow_call(session, model, body, timeout):
+        timeouts.append(timeout)
+        await asyncio.sleep(timeout)
+        raise gemini._Transient("tiempo de espera agotado")
+
+    monkeypatch.setattr(gemini, "_call", slow_call)
+    with pytest.raises(gemini.GeminiError, match="tardó demasiado"):
+        asyncio.run(gemini.generate(None, "p"))
+    assert len(timeouts) == 1 and timeouts[0] <= 4

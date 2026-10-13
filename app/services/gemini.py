@@ -92,11 +92,12 @@ async def generate(session: aiohttp.ClientSession, prompt: str) -> dict:
     deadline = time.monotonic() + TOTAL_BUDGET
     for model in settings.gemini_models:
         for attempt in range(RETRIES_PER_MODEL + 1):
-            if time.monotonic() > deadline:
+            remaining = deadline - time.monotonic()
+            if remaining < 3:
                 log.warning("Gemini superó el tiempo máximo: %s", "; ".join(errors))
                 raise GeminiError("Gemini tardó demasiado en responder")
             try:
-                result = await _call(session, model, body)
+                result = await _call(session, model, body, timeout=min(CALL_TIMEOUT, remaining))
                 log.info("Itinerario generado con %s", model)
                 return result
             except _Transient as exc:  # 429/500/504/timeout: reintentar, luego pasar al siguiente modelo
@@ -114,7 +115,8 @@ async def generate(session: aiohttp.ClientSession, prompt: str) -> dict:
 
 RETRIES_PER_MODEL = 1
 RETRY_DELAY = 1.5
-TOTAL_BUDGET = 70  # segundos máximos sumando todos los intentos
+TOTAL_BUDGET = 45  # segundos máximos sumando todos los intentos
+CALL_TIMEOUT = 25  # segundos máximos por intento (nunca más que lo que queda del total)
 TRANSIENT_STATUS = {429, 500, 504}
 
 
@@ -126,11 +128,11 @@ class _Unavailable(Exception):
     pass
 
 
-async def _call(session: aiohttp.ClientSession, model: str, body: dict) -> dict:
+async def _call(session: aiohttp.ClientSession, model: str, body: dict, timeout: float) -> dict:
     headers = {"x-goog-api-key": settings.gemini_api_key}
     try:
         async with session.post(
-            API_URL.format(model=model), json=body, headers=headers, timeout=aiohttp.ClientTimeout(total=60)
+            API_URL.format(model=model), json=body, headers=headers, timeout=aiohttp.ClientTimeout(total=timeout)
         ) as resp:
             data = await resp.json(content_type=None)
             status = resp.status
