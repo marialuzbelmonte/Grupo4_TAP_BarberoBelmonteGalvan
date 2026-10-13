@@ -44,8 +44,8 @@ CATEGORIES: dict[str, Category] = {
             "atracciones",
             "Atracciones",
             (("tourism", ("attraction", "viewpoint", "zoo", "aquarium", "theme_park")),),
-            15.0,
-            90,
+            0.0,
+            45,
         ),
         Category("parques", "Parques", (("leisure", ("park", "garden", "nature_reserve")),), 0.0, 60),
         Category("templos", "Templos", (("amenity", ("place_of_worship",)),), 0.0, 30, require_wikidata=True),
@@ -53,6 +53,32 @@ CATEGORIES: dict[str, Category] = {
         Category("cafes", "Cafés", (("amenity", ("cafe", "ice_cream")),), 7.0, 40, max_items=12),
     )
 }
+
+# Tipo concreto de lugar -> (costo estimado USD por persona, minutos de visita).
+# Afina la estimación de la categoría: "Atracciones" mezcla un parque temático pago
+# con una estatua en la vereda (p. ej. Mafalda en San Telmo es tourism=attraction).
+KINDS: dict[str, tuple[float, int]] = {
+    "artwork": (0.0, 15),  # estatuas y esculturas en el espacio público
+    "attraction": (0.0, 45),
+    "viewpoint": (0.0, 30),
+    "zoo": (20.0, 180),
+    "aquarium": (20.0, 120),
+    "theme_park": (35.0, 300),
+    "gallery": (0.0, 60),
+    "memorial": (0.0, 20),
+    "monument": (0.0, 20),
+    "ice_cream": (5.0, 25),
+}
+
+
+def kind_of(cat: Category, tags: dict) -> str | None:
+    """Valor OSM que define qué es el lugar ("zoo", "viewpoint"…); "artwork" si es una obra pública."""
+    if "artwork_type" in tags or tags.get("tourism") == "artwork":
+        return "artwork"
+    for key, values in cat.rules:
+        if tags.get(key) in values:
+            return tags[key]
+    return None
 
 
 class UpstreamError(RuntimeError):

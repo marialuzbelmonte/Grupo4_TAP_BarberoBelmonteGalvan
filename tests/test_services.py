@@ -144,3 +144,26 @@ def test_heuristic_places_restaurant_near_lunch():
 def test_default_description_uses_proper_singular():
     for slug, expected in [("atracciones", "Atracción"), ("cafes", "Café"), ("museos", "Museo")]:
         assert attractions._describe(osm.CATEGORIES[slug], {}, None) == f"{expected} en la zona"
+
+
+MAFALDA_TAGS = {  # etiquetas reales de OSM (node 2472979623, San Telmo)
+    "name": "Mafalda, Susanita y Manolito", "tourism": "attraction", "amenity": "bench",
+    "artwork_type": "sculpture", "wikidata": "Q111038841",
+}
+
+
+def test_public_statue_is_free_and_short():
+    cat = osm.classify(MAFALDA_TAGS)
+    assert cat.slug == "atracciones"
+    assert osm.kind_of(cat, MAFALDA_TAGS) == "artwork"
+    cost = attractions.estimate_cost(cat, MAFALDA_TAGS, None)
+    assert cost.amount_usd == 0 and "Gratuito" in cost.label
+    statue = make_attraction(1, -34.62, -58.37, category="atracciones").model_copy(update={"kind": "artwork"})
+    assert itinerary._visit_minutes(statue) == 15
+
+
+def test_paid_attraction_kinds_keep_a_price():
+    cat = osm.CATEGORIES["atracciones"]
+    assert attractions.estimate_cost(cat, {"tourism": "zoo"}, None).amount_usd == 20
+    assert attractions.estimate_cost(cat, {"tourism": "viewpoint"}, None).amount_usd == 0
+    assert attractions.estimate_cost(cat, {"tourism": "attraction", "fee": "yes"}, None).amount_usd == 8

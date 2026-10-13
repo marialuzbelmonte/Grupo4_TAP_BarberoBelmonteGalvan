@@ -34,7 +34,10 @@ def hours_label(raw: str | None) -> str | None:
 
 
 def estimate_cost(cat: osm.Category, tags: dict, wd: dict | None) -> Cost:
-    """Prioridad: tarifa de Wikidata > etiquetas fee/charge de OSM > estimación por categoría."""
+    """Prioridad: tarifa de Wikidata > etiquetas fee/charge de OSM > estimación por tipo o categoría.
+
+    Es solo la entrada o el consumo en el lugar: los traslados no se incluyen.
+    """
     fee = wd and wd.get("fee")
     if fee:
         return Cost(
@@ -48,11 +51,17 @@ def estimate_cost(cat: osm.Category, tags: dict, wd: dict | None) -> Cost:
             return Cost(amount_usd=round(amount * _USD_RATES[code], 2), source="osm", label=f"Entrada según OSM ({tags['charge']})")
     if tags.get("fee") == "no":
         return Cost(amount_usd=0.0, source="osm", label="Gratuito según OSM")
-    base = cat.base_cost_usd
+    kind = osm.kind_of(cat, tags)
+    base = osm.KINDS[kind][0] if kind in osm.KINDS else cat.base_cost_usd
     if tags.get("fee") == "yes" and base == 0:
-        base = 8.0
-    kind = "Consumo por persona estimado" if cat.slug in {"restaurantes", "cafes"} else "Estimación por categoría"
-    return Cost(amount_usd=base, source="estimado", label=kind)
+        return Cost(amount_usd=8.0, source="estimado", label="Con entrada según OSM (monto estimado)")
+    if base == 0:
+        label = "Gratuito (espacio público)" if kind == "artwork" else "Sin costo de entrada (estimado)"
+    elif cat.slug in {"restaurantes", "cafes"}:
+        label = "Consumo por persona estimado"
+    else:
+        label = "Estimación por tipo de lugar"
+    return Cost(amount_usd=base, source="estimado", label=label)
 
 
 def rating(tags: dict, wd: dict | None) -> float:
@@ -122,6 +131,7 @@ def build_attraction(poi: dict, wd: dict | None, image: dict | None, origin: geo
         name=tags.get("name:es") or tags["name"],
         category=cat.slug,
         category_label=cat.label,
+        kind=osm.kind_of(cat, tags),
         lat=poi["lat"],
         lon=poi["lon"],
         description=_describe(cat, tags, wd),

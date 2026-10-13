@@ -9,7 +9,7 @@ import aiohttp
 from app.config import settings
 from app.models import Attraction, Budget, BudgetRow, DayPlan, Itinerary, ItineraryRequest, Stop
 from app.services import gemini, geo
-from app.services.osm import CATEGORIES
+from app.services.osm import CATEGORIES, KINDS
 
 log = logging.getLogger(__name__)
 
@@ -36,6 +36,8 @@ def _to_minutes(value: str) -> int:
 
 
 def _visit_minutes(a: Attraction) -> int:
+    if a.kind in KINDS:
+        return KINDS[a.kind][1]
     cat = CATEGORIES.get(a.category)
     return cat.visit_minutes if cat else 60
 

@@ -42,6 +42,7 @@ class Attraction(BaseModel):
     name: str = Field(max_length=300)
     category: str
     category_label: str
+    kind: str | None = Field(default=None, max_length=40)  # tipo OSM concreto: "zoo", "artwork"…
     lat: float = Field(ge=-90, le=90)
     lon: float = Field(ge=-180, le=180)
     description: str = Field(max_length=1000)
