@@ -81,7 +81,8 @@ Abrir <http://localhost:8000>.
 python -m venv .venv
 .venv\Scripts\activate       # Windows  (Linux/macOS: source .venv/bin/activate)
 pip install -r requirements-dev.txt
-uvicorn app.main:app --reload
+uvicorn app.main:app --reload    # desarrollo, con recarga automática
+python -m app                    # como en producción (lee el puerto de $PORT)
 ```
 
 ### Tests y benchmark
