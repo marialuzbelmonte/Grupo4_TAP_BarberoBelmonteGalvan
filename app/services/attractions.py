@@ -16,6 +16,10 @@ _DAY_NAMES = {"Mo": "Lu", "Tu": "Ma", "We": "Mi", "Th": "Ju", "Fr": "Vi", "Sa": 
 _DAY_RE = re.compile(r"\b(Mo|Tu|We|Th|Fr|Sa|Su|PH)\b")
 _CHARGE_RE = re.compile(r"^\s*(\d+(?:[.,]\d+)?)\s*([A-Z]{3})\s*$")
 _USD_RATES = {code: rate for code, rate in wikidata.CURRENCIES.values()}
+_SINGULAR = {
+    "museos": "Museo", "monumentos": "Monumento", "atracciones": "Atracción", "parques": "Parque",
+    "templos": "Templo", "restaurantes": "Restaurante", "cafes": "Café",
+}
 
 
 def hours_label(raw: str | None) -> str | None:
@@ -76,7 +80,7 @@ def _describe(cat: osm.Category, tags: dict, wd: dict | None) -> str:
     cuisine = tags.get("cuisine")
     if cat.slug == "restaurantes" and cuisine:
         return f"Restaurante · cocina {cuisine.replace(';', ', ').replace('_', ' ')}"
-    return f"{cat.label[:-1] if cat.label.endswith('s') else cat.label} en la zona"
+    return f"{_SINGULAR.get(cat.slug, cat.label)} en la zona"
 
 
 def _safe_url(value: str | None) -> str | None:

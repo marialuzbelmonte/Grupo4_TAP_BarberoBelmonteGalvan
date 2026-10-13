@@ -8,10 +8,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Si un modelo está saturado (503) o fue retirado (404) se prueba el siguiente.
-# "gemini-flash-latest" es un alias que Google mantiene apuntando al Flash vigente.
-# El último es un modelo "lite": menos capaz pero con más disponibilidad.
-DEFAULT_GEMINI_MODELS = "gemini-3.8-flash,gemini-flash-latest,gemini-3.6-flash,gemini-3.5-flash,gemini-flash-lite-latest"
+# Si un modelo está saturado (503), sin cuota (429) o retirado (404) se prueba el siguiente.
+# Primero el "lite": medido, responde en ~2 s con buena calidad; los Flash completos
+# tardaban 25-90 s en el plan gratuito. Los alias "-latest" los mantiene Google al día.
+DEFAULT_GEMINI_MODELS = "gemini-flash-lite-latest,gemini-flash-latest,gemini-3.8-flash"
 
 REPO_URL = "https://github.com/marialuzbelmonte/Grupo4_TAP_BarberoBelmonteGalvan"
 

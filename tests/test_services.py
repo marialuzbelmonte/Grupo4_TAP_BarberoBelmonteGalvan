@@ -139,3 +139,8 @@ def test_heuristic_places_restaurant_near_lunch():
     meal = next(s for s in stops if s.category == "restaurantes")
     assert stops[0].category != "restaurantes"
     assert "12:30" <= meal.time <= "14:30"
+
+
+def test_default_description_uses_proper_singular():
+    for slug, expected in [("atracciones", "Atracción"), ("cafes", "Café"), ("museos", "Museo")]:
+        assert attractions._describe(osm.CATEGORIES[slug], {}, None) == f"{expected} en la zona"

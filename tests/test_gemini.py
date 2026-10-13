@@ -43,12 +43,19 @@ def fast_settings(monkeypatch):
 
 
 RATE = (429, {"error": {"message": "quota"}})
+FLAKY = (500, {"error": {"message": "internal"}})
 
 
-def test_rate_limit_retries_same_model():
-    session = FakeSession([RATE, OK])
+def test_server_error_retries_same_model():
+    session = FakeSession([FLAKY, OK])
     assert asyncio.run(gemini.generate(session, "p"))["title"] == "Plan"
     assert session.models == ["a", "a"]
+
+
+def test_quota_exceeded_skips_to_next():
+    session = FakeSession([RATE, OK])
+    assert asyncio.run(gemini.generate(session, "p"))["title"] == "Plan"
+    assert session.models == ["a", "b"]
 
 
 def test_busy_or_retired_model_skips_to_next():

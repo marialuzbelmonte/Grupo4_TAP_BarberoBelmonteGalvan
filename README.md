@@ -106,7 +106,7 @@ El `Procfile` queda como alternativa si se usa el builder Nixpacks/Railpack en l
 | Variable | Default | Uso |
 |---|---|---|
 | `GEMINI_API_KEY` | — | Clave de la API de Gemini (sin ella se usa la heurística local) |
-| `GEMINI_MODEL` | `gemini-3.8-flash,gemini-flash-latest,gemini-3.6-flash,gemini-3.5-flash,gemini-flash-lite-latest` | Modelos de Gemini en orden de preferencia (si uno falla se usa el siguiente) |
+| `GEMINI_MODEL` | `gemini-flash-lite-latest,gemini-flash-latest,gemini-3.8-flash` | Modelos de Gemini en orden de preferencia (si uno falla se usa el siguiente) |
 | `CONTACT_EMAIL` | — | Contacto opcional agregado al User-Agent |
 | `MAX_CONCURRENCY` | `10` | Pedidos simultáneos máximos a Wikimedia |
 | `HTTP_TIMEOUT` | `30` | Timeout general de las APIs externas (s) |

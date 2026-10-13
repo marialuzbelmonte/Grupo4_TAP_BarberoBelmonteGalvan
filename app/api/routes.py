@@ -1,6 +1,7 @@
 """Endpoints REST. Toda la respuesta es JSON salvo la exportación a PDF."""
 from __future__ import annotations
 
+import os
 import re
 
 import aiohttp
@@ -19,7 +20,12 @@ def http_session(request: Request) -> aiohttp.ClientSession:
 
 @router.get("/health")
 async def health() -> dict:
-    return {"status": "ok", "gemini": bool(settings.gemini_api_key)}
+    # RAILWAY_GIT_COMMIT_SHA lo define Railway: permite ver qué versión está desplegada.
+    return {
+        "status": "ok",
+        "gemini": bool(settings.gemini_api_key),
+        "version": os.getenv("RAILWAY_GIT_COMMIT_SHA", "local")[:7],
+    }
 
 
 @router.get("/categories")

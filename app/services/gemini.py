@@ -100,12 +100,12 @@ async def generate(session: aiohttp.ClientSession, prompt: str) -> dict:
                 result = await _call(session, model, body, timeout=min(CALL_TIMEOUT, remaining))
                 log.info("Itinerario generado con %s", model)
                 return result
-            except _Transient as exc:  # 429/500/504/timeout: reintentar, luego pasar al siguiente modelo
+            except _Transient as exc:  # 500/504/timeout: reintentar, luego pasar al siguiente modelo
                 errors.append(f"{model}: {exc}")
                 log.warning("Gemini %s falló (intento %d): %s", model, attempt + 1, exc)
                 if attempt < RETRIES_PER_MODEL:
                     await asyncio.sleep(RETRY_DELAY * (attempt + 1))
-            except _Unavailable as exc:  # 404 (retirado) o 503 (saturado): reintentar no sirve, siguiente
+            except _Unavailable as exc:  # 404/429/503: pasar directo al siguiente modelo
                 errors.append(f"{model}: {exc}")
                 log.warning("Gemini %s no disponible: %s", model, exc)
                 break
@@ -117,7 +117,7 @@ RETRIES_PER_MODEL = 1
 RETRY_DELAY = 1.5
 TOTAL_BUDGET = 45  # segundos máximos sumando todos los intentos
 CALL_TIMEOUT = 25  # segundos máximos por intento (nunca más que lo que queda del total)
-TRANSIENT_STATUS = {429, 500, 504}
+TRANSIENT_STATUS = {500, 504}
 
 
 class _Transient(Exception):
@@ -143,7 +143,7 @@ async def _call(session: aiohttp.ClientSession, model: str, body: dict, timeout:
 
     if status != 200:
         message = (data.get("error") or {}).get("message", f"HTTP {status}")[:200]
-        if status in (404, 503):
+        if status in (404, 429, 503):  # retirado, sin cuota o saturado: reintentar no sirve
             raise _Unavailable(f"HTTP {status}: {message}")
         if status in TRANSIENT_STATUS:
             raise _Transient(f"HTTP {status}: {message}")
