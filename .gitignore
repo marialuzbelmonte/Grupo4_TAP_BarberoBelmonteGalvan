@@ -1,0 +1,30 @@
+# Documentación interna del equipo: NO se sube al repositorio
+explicacion.md
+
+# Entorno
+.env
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+
+# Editores / SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+
+# Configuración local del asistente
+.claude/

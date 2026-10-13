@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rumbo · Cuaderno de itinerarios</title>
+  <meta name="description" content="Planificá tu viaje: elegí destino, hotel y atracciones, y armá un itinerario optimizado con presupuesto.">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=Schibsted+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#sheet">Saltar al contenido</a>
+
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="Rumbo, inicio">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M20 5 L24 20 L20 35 L16 20 Z" fill="currentColor"/>
+        <circle cx="20" cy="20" r="2.5" fill="var(--paper)"/>
+      </svg>
+      <span class="brand-name">Rumbo</span>
+      <span class="brand-tag">cuaderno de itinerarios</span>
+    </a>
+    <ol class="progress" aria-label="Pasos">
+      <li data-step="destino" class="is-current"><span>01</span> Destino</li>
+      <li data-step="hotel"><span>02</span> Hotel</li>
+      <li data-step="explorar"><span>03</span> Explorar</li>
+      <li data-step="itinerario"><span>04</span> Itinerario</li>
+    </ol>
+  </header>
+
+  <main class="layout">
+    <section class="map-pane" aria-label="Mapa interactivo">
+      <div id="map" role="application" aria-label="Mapa del destino"></div>
+      <p class="map-hint" id="mapHint" hidden></p>
+      <div class="map-legend" id="mapLegend" hidden></div>
+    </section>
+
+    <div class="sheet" id="sheet">
+      <!-- 01 · Destino -->
+      <section class="step" id="step-destino" aria-labelledby="h-destino">
+        <header class="step-head">
+          <span class="step-num" aria-hidden="true">01</span>
+          <div>
+            <h2 id="h-destino">¿A dónde vas?</h2>
+            <p class="step-lede">Buscá una ciudad o región. El mapa se centra ahí.</p>
+          </div>
+        </header>
+        <form class="search-form" id="destForm" role="search" autocomplete="off">
+          <label class="field-label" for="destInput">Destino</label>
+          <div class="input-row">
+            <input class="input" id="destInput" name="q" type="search" placeholder="Ej.: Córdoba, Lisboa, Cusco…" minlength="2" required>
+            <button class="btn btn-ink" type="submit">Buscar</button>
+          </div>
+          <ul class="results" id="destResults" aria-label="Resultados de destino"></ul>
+        </form>
+        <p class="chosen" id="destChosen" hidden></p>
+      </section>
+
+      <!-- 02 · Hotel -->
+      <section class="step is-locked" id="step-hotel" aria-labelledby="h-hotel">
+        <header class="step-head">
+          <span class="step-num" aria-hidden="true">02</span>
+          <div>
+            <h2 id="h-hotel">Tu base</h2>
+            <p class="step-lede">Buscá tu hotel o marcalo en el mapa. Todas las distancias se miden desde ahí; podés arrastrar el pin.</p>
+          </div>
+        </header>
+        <form class="search-form" id="hotelForm" role="search" autocomplete="off">
+          <label class="field-label" for="hotelInput">Hotel o dirección</label>
+          <div class="input-row">
+            <input class="input" id="hotelInput" name="q" type="search" placeholder="Nombre del hotel o calle y número" minlength="2" required>
+            <button class="btn btn-ink" type="submit">Buscar</button>
+          </div>
+          <ul class="results" id="hotelResults" aria-label="Resultados de hotel"></ul>
+        </form>
+        <div class="hotel-actions">
+          <button class="btn btn-line" type="button" id="pickOnMap" aria-pressed="false">Marcar en el mapa</button>
+          <button class="btn btn-line" type="button" id="useCenter">Usar el centro del destino</button>
+          <label class="field-inline" for="radius">
+            Radio
+            <select class="select" id="radius">
+              <option value="1500">1,5 km</option>
+              <option value="3000" selected>3 km</option>
+              <option value="5000">5 km</option>
+              <option value="8000">8 km</option>
+            </select>
+          </label>
+        </div>
+        <p class="chosen" id="hotelChosen" hidden></p>
+      </section>
+
+      <!-- 03 · Explorar -->
+      <section class="step is-locked" id="step-explorar" aria-labelledby="h-explorar">
+        <header class="step-head">
+          <span class="step-num" aria-hidden="true">03</span>
+          <div>
+            <h2 id="h-explorar">Qué hay cerca</h2>
+            <p class="step-lede">Filtrá por categoría o buscá por nombre, y marcá lo que quieras visitar.</p>
+          </div>
+        </header>
+        <div class="explore-tools">
+          <label class="field-label sr-only" for="filterInput">Buscar entre las atracciones</label>
+          <input class="input input-search" id="filterInput" type="search" placeholder="Buscar: museo, plaza, catedral…">
+          <div class="chips" id="chips" role="group" aria-label="Categorías"></div>
+        </div>
+        <div class="explore-meta" id="exploreMeta" aria-live="polite"></div>
+        <button class="btn btn-line btn-small" type="button" id="refreshHere" hidden>Buscar alrededor de la nueva ubicación del hotel</button>
+        <div class="grid" id="grid"></div>
+      </section>
+
+      <!-- 04 · Itinerario -->
+      <section class="step is-locked" id="step-itinerario" aria-labelledby="h-itinerario">
+        <header class="step-head">
+          <span class="step-num" aria-hidden="true">04</span>
+          <div>
+            <h2 id="h-itinerario">El itinerario</h2>
+            <p class="step-lede">Ordenamos las paradas por cercanía y Gemini arma los horarios de cada día.</p>
+          </div>
+        </header>
+        <div id="itinerary" aria-live="polite">
+          <p class="empty">Todavía no hay itinerario. Elegí atracciones y tocá <strong>Armar itinerario</strong>.</p>
+        </div>
+      </section>
+
+      <footer class="colophon">
+        Datos © colaboradores de <a href="https://www.openstreetmap.org/copyright" rel="noopener" target="_blank">OpenStreetMap</a>,
+        Wikidata y Wikimedia Commons. Itinerarios generados con Gemini.
+      </footer>
+    </div>
+  </main>
+
+  <aside class="tray" id="tray" aria-label="Resumen de selección" hidden>
+    <div class="tray-count"><strong id="trayCount">0</strong> <span id="trayLabel">paradas elegidas</span></div>
+    <div class="tray-fields">
+      <label class="stepper">
+        <span>Días</span>
+        <input class="input input-num" id="days" type="number" min="1" max="14" value="2" inputmode="numeric">
+      </label>
+      <label class="stepper">
+        <span>Viajeros</span>
+        <input class="input input-num" id="travelers" type="number" min="1" max="20" value="1" inputmode="numeric">
+      </label>
+    </div>
+    <button class="btn btn-stamp" type="button" id="generate" disabled>Armar itinerario</button>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script type="module" src="/static/js/app.js"></script>
+</body>
+</html>
