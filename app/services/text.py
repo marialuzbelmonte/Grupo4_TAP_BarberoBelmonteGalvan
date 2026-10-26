@@ -38,3 +38,14 @@ def matches(query: str | None, *fields: str | None) -> bool:
         return True
     haystack = " ".join(normalize(f) for f in fields if f)
     return all(token in haystack for token in query_tokens)
+
+
+# Una letra, un símbolo o dígito y otra letra dentro de la misma palabra: "calificaci%n",
+# "opci3n". Así llegan a veces las tildes rotas desde el modelo de lenguaje.
+_GARBLED = re.compile(r"[^\W\d_][%#@$^~|0-9][^\W\d_]")
+
+
+def llm_text(value: object, limit: int) -> str:
+    """Texto generado por el LLM, listo para mostrar: vacío si viene con caracteres rotos."""
+    text = str(value or "").strip()[:limit]
+    return "" if _GARBLED.search(text) else text

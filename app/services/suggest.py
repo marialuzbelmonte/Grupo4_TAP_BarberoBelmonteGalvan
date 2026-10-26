@@ -122,6 +122,10 @@ async def candidates(
     return [a for a in ranked if a.id not in exclude][:MAX_CANDIDATES]
 
 
+def _default_reason(a: Attraction) -> str:
+    return f"Es el que mejor coincide con tu pedido, a {a.distance_km:.1f} km del hotel.".replace(".", ",", 1)
+
+
 def _candidate_card(a: Attraction) -> dict:
     return {
         "id": a.id, "nombre": a.name, "categoria": a.category_label, "descripcion": a.description,
@@ -161,7 +165,8 @@ async def suggest(session: aiohttp.ClientSession, pool: asyncpg.Pool | None, req
             for pick in chosen.get("picks") or []:
                 pid = pick.get("id") if isinstance(pick, dict) else None
                 if pid in by_id and all(s.attraction.id != pid for s in picks):  # solo ids reales, sin repetir
-                    picks.append(Suggestion(attraction=by_id[pid], reason=str(pick.get("reason") or "")[:200]))
+                    reason = text.llm_text(pick.get("reason"), 200) or _default_reason(by_id[pid])
+                    picks.append(Suggestion(attraction=by_id[pid], reason=reason))
             return SuggestResponse(
                 suggestions=picks[: intent["count"]], interpreted_as=intent["summary"], source="gemini", searched=len(found)
             )
@@ -169,8 +174,5 @@ async def suggest(session: aiohttp.ClientSession, pool: asyncpg.Pool | None, req
             log.info("Elección sin Gemini: %s", exc)
             source = "busqueda"
 
-    picks = [
-        Suggestion(attraction=a, reason=f"Es el resultado que mejor coincide con tu pedido, a {a.distance_km:.1f} km del hotel.")
-        for a in found[: intent["count"]]
-    ]
+    picks = [Suggestion(attraction=a, reason=_default_reason(a)) for a in found[: intent["count"]]]
     return SuggestResponse(suggestions=picks, interpreted_as=intent["summary"], source=source, searched=len(found))

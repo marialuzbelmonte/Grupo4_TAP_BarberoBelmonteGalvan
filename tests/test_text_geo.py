@@ -83,3 +83,17 @@ def test_split_into_days_is_balanced_and_ordered():
     assert groups == [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9]]
     assert geo.split_into_days([0, 1], 4) == [[0], [1], [], []]
     assert math.fsum(len(g) for g in geo.split_into_days(list(range(7)), 7)) == 7
+
+
+@pytest.mark.parametrize(
+    ("raw", "kept"),
+    [
+        ("Es ideal, est%e cerca y tiene la mejor calificaci%n.", False),  # tildes rotas por el LLM
+        ("Es la mejor opci3n por su cercan3a.", False),
+        ("Es el más cercano, a 0.33 km. ¡Pedí el 2x1!", True),
+        ("Café-bar de l'Abbé, ideal (y barato).", True),
+        ("Visitá el Museo H. Pérez a las 10:30.", True),
+    ],
+)
+def test_llm_text_drops_garbled_output(raw, kept):
+    assert (text.llm_text(raw, 200) == raw) is kept

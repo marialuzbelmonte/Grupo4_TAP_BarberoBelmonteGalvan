@@ -8,7 +8,7 @@ import aiohttp
 
 from app.config import settings
 from app.models import Attraction, Budget, BudgetRow, DayPlan, Itinerary, ItineraryRequest, Stop
-from app.services import gemini, geo
+from app.services import gemini, geo, text
 from app.services.osm import CATEGORIES, KINDS
 
 log = logging.getLogger(__name__)
@@ -73,7 +73,7 @@ def reconcile(raw: dict, groups: list[list[Attraction]]) -> tuple[list[dict], st
         if not isinstance(idx, int) or not 1 <= idx <= len(groups):
             continue
         target = days[idx - 1]
-        target["theme"] = str(day.get("theme") or "")[:80]
+        target["theme"] = text.llm_text(day.get("theme"), 80)
         for stop in day.get("stops") or []:
             if not isinstance(stop, dict):
                 continue
@@ -85,14 +85,14 @@ def reconcile(raw: dict, groups: list[list[Attraction]]) -> tuple[list[dict], st
             time_value = time_value if _TIME_RE.match(time_value.strip()) else None
             duration = stop.get("duration_min")
             duration = min(300, max(15, duration)) if isinstance(duration, int) else _visit_minutes(by_id[sid])
-            target["items"].append((by_id[sid], time_value and time_value.strip(), duration, str(stop.get("tip") or "")[:240]))
+            target["items"].append((by_id[sid], time_value and time_value.strip(), duration, text.llm_text(stop.get("tip"), 240)))
 
     for sid, attraction in by_id.items():
         if sid not in used:
             days[heuristic_day[sid]]["items"].append((attraction, None, _visit_minutes(attraction), ""))
 
-    tips = [str(t)[:240] for t in (raw.get("tips") or []) if isinstance(t, str)][:6]
-    return days, str(raw.get("title") or "")[:120], str(raw.get("summary") or "")[:600], tips
+    tips = [tip for t in (raw.get("tips") or []) if isinstance(t, str) and (tip := text.llm_text(t, 240))][:6]
+    return days, text.llm_text(raw.get("title"), 120), text.llm_text(raw.get("summary"), 600), tips
 
 
 def _place_meals(items: list[tuple]) -> list[tuple]:

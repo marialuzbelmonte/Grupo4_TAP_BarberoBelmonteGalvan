@@ -77,3 +77,9 @@ def test_already_selected_places_are_excluded(monkeypatch):
     req = REQUEST.model_copy(update={"exclude": ["node/1"]})
     found = asyncio.run(suggest.candidates(None, None, req, {**INTENT, "keywords": "restaurante mexicana pizza"}))
     assert [a.id for a in found] == ["node/2"]
+
+
+def test_garbled_reason_is_replaced(monkeypatch):
+    fake_pipeline(monkeypatch, [INTENT, {"picks": [{"id": "node/1", "reason": "la mejor calificaci%n"}]}])
+    reason = asyncio.run(suggest.suggest(None, None, REQUEST)).suggestions[0].reason
+    assert "%" not in reason and "coincide con tu pedido" in reason
