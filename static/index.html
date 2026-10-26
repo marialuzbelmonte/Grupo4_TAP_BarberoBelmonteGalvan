@@ -32,6 +32,7 @@
       <li data-step="explorar"><span>03</span> Explorar</li>
       <li data-step="itinerario"><span>04</span> Itinerario</li>
     </ol>
+    <div class="account" id="account"></div>
   </header>
 
   <main class="layout">
@@ -104,9 +105,21 @@
             <p class="step-lede">Filtrá por categoría o buscá por nombre, y marcá lo que quieras visitar.</p>
           </div>
         </header>
+        <form class="ask" id="askForm" autocomplete="off">
+          <label class="ask-label" for="askInput">
+            <span class="ask-badge">IA</span> Pedí algo y la IA elige el lugar por vos
+          </label>
+          <div class="input-row">
+            <input class="input" id="askInput" type="text" minlength="3" maxlength="200" required
+                   placeholder="Ej.: «alguna heladería», «un lugar para comer hamburguesas», «un museo de historia»">
+            <button class="btn btn-ink" type="submit">Pedir</button>
+          </div>
+          <div class="ask-result" id="askResult" aria-live="polite"></div>
+        </form>
         <div class="explore-tools">
           <label class="field-label sr-only" for="filterInput">Buscar entre las atracciones</label>
           <input class="input input-search" id="filterInput" type="search" placeholder="Buscar: museo, plaza, catedral…">
+          <p class="fts-info mono" id="ftsInfo" hidden></p>
           <div class="chips" id="chips" role="group" aria-label="Categorías"></div>
         </div>
         <div class="explore-meta" id="exploreMeta" aria-live="polite"></div>
@@ -149,6 +162,48 @@
     </div>
     <button class="btn btn-stamp" type="button" id="generate" disabled>Armar itinerario</button>
   </aside>
+
+  <dialog class="modal" id="authDialog" aria-labelledby="authTitle">
+    <div class="modal-body">
+      <form method="dialog"><button class="modal-x" aria-label="Cerrar">×</button></form>
+      <p class="kicker">Tu cuaderno</p>
+      <h2 id="authTitle">Guardá tus itinerarios</h2>
+      <p class="modal-lede" id="authReason" hidden></p>
+      <div class="tabs" role="tablist" aria-label="Ingreso o registro">
+        <button class="tab" type="button" role="tab" id="tabLogin" aria-controls="loginForm" aria-selected="true">Ingresar</button>
+        <button class="tab" type="button" role="tab" id="tabRegister" aria-controls="registerForm" aria-selected="false">Crear cuenta</button>
+      </div>
+      <form class="auth-form" id="loginForm" role="tabpanel" aria-labelledby="tabLogin">
+        <label class="field-label" for="loginEmail">Email</label>
+        <input class="input" id="loginEmail" type="email" autocomplete="email" required>
+        <label class="field-label" for="loginPassword">Contraseña</label>
+        <input class="input" id="loginPassword" type="password" autocomplete="current-password" required>
+        <p class="form-error" id="loginError" role="alert"></p>
+        <button class="btn btn-stamp" type="submit">Ingresar</button>
+      </form>
+      <form class="auth-form" id="registerForm" role="tabpanel" aria-labelledby="tabRegister" hidden>
+        <label class="field-label" for="registerName">Nombre</label>
+        <input class="input" id="registerName" type="text" autocomplete="given-name" maxlength="80" required>
+        <label class="field-label" for="registerEmail">Email</label>
+        <input class="input" id="registerEmail" type="email" autocomplete="email" required>
+        <label class="field-label" for="registerPassword">Contraseña</label>
+        <input class="input" id="registerPassword" type="password" autocomplete="new-password" minlength="8" maxlength="128" required
+               aria-describedby="passwordHint">
+        <p class="field-hint" id="passwordHint">Mínimo 8 caracteres.</p>
+        <p class="form-error" id="registerError" role="alert"></p>
+        <button class="btn btn-stamp" type="submit">Crear cuenta</button>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog class="modal modal-wide" id="savedDialog" aria-labelledby="savedTitle">
+    <div class="modal-body">
+      <form method="dialog"><button class="modal-x" aria-label="Cerrar">×</button></form>
+      <p class="kicker">Tu cuaderno</p>
+      <h2 id="savedTitle">Mis itinerarios</h2>
+      <ul class="saved-list" id="savedList"></ul>
+    </div>
+  </dialog>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

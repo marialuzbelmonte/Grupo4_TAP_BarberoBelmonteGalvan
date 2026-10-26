@@ -76,20 +76,28 @@ def build_prompt(destination: str, hotel_name: str, day_groups: list[list[dict]]
     return "Armá el itinerario a partir de estos datos:\n" + json.dumps(payload, ensure_ascii=False, indent=1)
 
 
-async def generate(session: aiohttp.ClientSession, prompt: str) -> dict:
+async def generate(
+    session: aiohttp.ClientSession,
+    prompt: str,
+    system: str = SYSTEM_PROMPT,
+    schema: dict = RESPONSE_SCHEMA,
+    temperature: float = 0.6,
+    budget: float | None = None,
+) -> dict:
+    """Pide a Gemini una respuesta JSON que cumpla `schema`. Por defecto, un itinerario."""
     if not settings.gemini_api_key:
         raise GeminiError("Falta GEMINI_API_KEY")
     body = {
-        "systemInstruction": {"parts": [{"text": SYSTEM_PROMPT}]},
+        "systemInstruction": {"parts": [{"text": system}]},
         "contents": [{"role": "user", "parts": [{"text": prompt}]}],
         "generationConfig": {
-            "temperature": 0.6,
+            "temperature": temperature,
             "responseMimeType": "application/json",
-            "responseSchema": RESPONSE_SCHEMA,
+            "responseSchema": schema,
         },
     }
     errors: list[str] = []
-    deadline = time.monotonic() + TOTAL_BUDGET
+    deadline = time.monotonic() + (budget or TOTAL_BUDGET)
     for model in settings.gemini_models:
         for attempt in range(RETRIES_PER_MODEL + 1):
             remaining = deadline - time.monotonic()

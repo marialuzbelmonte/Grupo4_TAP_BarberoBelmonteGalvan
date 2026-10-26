@@ -4,26 +4,34 @@ from __future__ import annotations
 import os
 import re
 
-import aiohttp
-from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
+import time
 
+import aiohttp
+import asyncpg
+from fastapi import APIRouter, Depends, HTTPException, Query, Response
+
+from app.api.deps import db_pool, http_session, optional_pool
 from app.config import settings
-from app.models import AttractionsResponse, GeocodeResult, Itinerary, ItineraryRequest
-from app.services import attractions, itinerary, osm, pdf, text
+from app.models import (
+    AttractionsResponse,
+    GeocodeResult,
+    Itinerary,
+    ItineraryRequest,
+    SuggestRequest,
+    SuggestResponse,
+)
+from app.services import attractions, itinerary, osm, pdf, places, suggest, text
 
 router = APIRouter()
 
 
-def http_session(request: Request) -> aiohttp.ClientSession:
-    return request.app.state.http
-
-
 @router.get("/health")
-async def health() -> dict:
+async def health(pool: asyncpg.Pool | None = Depends(optional_pool)) -> dict:
     # RAILWAY_GIT_COMMIT_SHA lo define Railway: permite ver qué versión está desplegada.
     return {
         "status": "ok",
         "gemini": bool(settings.gemini_api_key),
+        "database": pool is not None,
         "version": os.getenv("RAILWAY_GIT_COMMIT_SHA", "local")[:7],
     }
 
@@ -55,16 +63,59 @@ async def list_attractions(
     categories: str | None = Query(default=None, description="Slugs separados por coma"),
     q: str | None = Query(default=None, max_length=120, description="Texto libre (se normaliza)"),
     session: aiohttp.ClientSession = Depends(http_session),
+    pool: asyncpg.Pool | None = Depends(optional_pool),
 ):
     slugs = [s for s in re.split(r"[,\s]+", categories or "") if s] or list(osm.CATEGORIES)
     unknown = [s for s in slugs if s not in osm.CATEGORIES]
     if unknown:
         raise HTTPException(status_code=422, detail=f"Categorías desconocidas: {', '.join(unknown)}")
+    # Zona indexada (p. ej. Rafaela): los lugares salen de PostgreSQL, sin APIs externas.
+    zone = await places.zone_at(pool, lat, lon) if pool else None
+    if zone:
+        start = time.perf_counter()
+        found = await places.nearby(pool, zone["slug"], lat, lon, radius)
+        found = [a for a in found if a.category in slugs and text.matches(q, a.name, a.description, a.category_label)]
+        meta = {
+            "count": len(found), "zone": zone["slug"], "zone_name": zone["name"], "source": "indice",
+            "db_ms": round((time.perf_counter() - start) * 1000),
+        }
+        return AttractionsResponse(attractions=found, meta=meta)
     try:
         items, meta = await attractions.search(session, lat, lon, radius, slugs, q)
     except osm.UpstreamError as exc:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
     return AttractionsResponse(attractions=items, meta=meta)
+
+
+@router.get("/places/search")
+async def search_places(
+    zone: str = Query(min_length=1, max_length=40),
+    q: str = Query(min_length=1, max_length=120),
+    lat: float = Query(ge=-90, le=90),
+    lon: float = Query(ge=-180, le=180),
+    radius: int = Query(default=3000, ge=300, le=15000),
+    pool: asyncpg.Pool = Depends(db_pool),
+) -> dict:
+    """Búsqueda full-text en una zona indexada: ids ordenados por relevancia."""
+    start = time.perf_counter()
+    found = await places.search(pool, zone, q, lat, lon, radius, limit=100)
+    return {
+        "results": [{"id": a.id, "rank": round(rank, 4)} for a, rank in found],
+        "tsquery": places.build_tsquery(q),
+        "ms": round((time.perf_counter() - start) * 1000, 1),
+    }
+
+
+@router.post("/suggest", response_model=SuggestResponse)
+async def suggest_places(
+    req: SuggestRequest,
+    session: aiohttp.ClientSession = Depends(http_session),
+    pool: asyncpg.Pool | None = Depends(optional_pool),
+):
+    try:
+        return await suggest.suggest(session, pool, req)
+    except osm.UpstreamError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
 
 
 @router.post("/itinerary", response_model=Itinerary)

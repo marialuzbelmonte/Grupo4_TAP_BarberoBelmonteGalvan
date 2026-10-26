@@ -1,9 +1,10 @@
 """Esquemas JSON que intercambian cliente y servidor."""
 from __future__ import annotations
 
+from datetime import datetime
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, EmailStr, Field
 
 BUDGET_NOTE = (
     "Nota: Este presupuesto incluye únicamente las estimaciones de las atracciones. "
@@ -121,3 +122,56 @@ class Itinerary(BaseModel):
     source: Literal["gemini", "heuristica"]
     warning: str | None = None
     route_stats: dict = Field(default_factory=dict)
+
+
+# ---------------------------------------------------------------- cuentas
+
+
+class RegisterRequest(BaseModel):
+    email: EmailStr
+    name: str = Field(min_length=1, max_length=80)
+    password: str = Field(min_length=8, max_length=128)
+
+
+class LoginRequest(BaseModel):
+    email: EmailStr
+    password: str = Field(min_length=1, max_length=128)
+
+
+class User(BaseModel):
+    id: int
+    email: str
+    name: str
+
+
+class SavedItinerary(BaseModel):
+    id: int
+    title: str
+    destination: str
+    created_at: datetime
+    days: int
+    stops: int
+    total_usd: float
+
+
+# ---------------------------------------------------------------- pedidos a la IA
+
+
+class SuggestRequest(BaseModel):
+    request: str = Field(min_length=3, max_length=200)  # "algún restaurante mexicano"
+    lat: float = Field(ge=-90, le=90)
+    lon: float = Field(ge=-180, le=180)
+    radius: int = Field(default=3000, ge=300, le=15000)
+    exclude: list[str] = Field(default_factory=list, max_length=60)  # ids ya elegidos
+
+
+class Suggestion(BaseModel):
+    attraction: Attraction
+    reason: str
+
+
+class SuggestResponse(BaseModel):
+    suggestions: list[Suggestion]
+    interpreted_as: str  # cómo se entendió el pedido, para mostrarlo
+    source: Literal["gemini", "busqueda"]
+    searched: int  # cuántos candidatos se evaluaron

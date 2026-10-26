@@ -1,0 +1,2565 @@
+{
+ "zone": {
+  "slug": "rafaela",
+  "name": "Rafaela, Santa Fe",
+  "lat": -31.2526,
+  "lon": -61.4916,
+  "radius_m": 6000
+ },
+ "places": [
+  {
+   "attraction": {
+    "id": "way/565466878",
+    "name": "Centro Cultural Sociedad Italiana",
+    "category": "cultura",
+    "category_label": "Cultura",
+    "kind": "arts_centre",
+    "lat": -31.2509055,
+    "lon": -61.4874877,
+    "description": "Espacio cultural en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.434,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/3301481375",
+    "name": "\"Las Tipas\"",
+    "category": "cultura",
+    "category_label": "Cultura",
+    "kind": "cinema",
+    "lat": -31.2425007,
+    "lon": -61.5055272,
+    "description": "Espacio cultural en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 8.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.736,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/4971070223",
+    "name": "Teatro Lasserre",
+    "category": "cultura",
+    "category_label": "Cultura",
+    "kind": "theatre",
+    "lat": -31.2505383,
+    "lon": -61.4909329,
+    "description": "Espacio cultural en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 15.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.238,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/4971259735",
+    "name": "Complejo cultural Viejo Mercado",
+    "category": "cultura",
+    "category_label": "Cultura",
+    "kind": "theatre",
+    "lat": -31.2518273,
+    "lon": -61.4857177,
+    "description": "Espacio cultural en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 15.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.566,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/435486377",
+    "name": "Museo Municipal de Arte \"Doctor Urbano Poggi\"",
+    "category": "cultura",
+    "category_label": "Cultura",
+    "kind": "arts_centre",
+    "lat": -31.2522283,
+    "lon": -61.4858167,
+    "description": "Espacio cultural en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.551,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595967823",
+    "name": "Anfiteatro \"Alfredo Williner\"",
+    "category": "cultura",
+    "category_label": "Cultura",
+    "kind": "theatre",
+    "lat": -31.2616708,
+    "lon": -61.5010069,
+    "description": "Espacio cultural en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 15.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.348,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/616718322",
+    "name": "Banda de Música - Orquesta",
+    "category": "cultura",
+    "category_label": "Cultura",
+    "kind": "theatre",
+    "lat": -31.2528939,
+    "lon": -61.491658,
+    "description": "Espacio cultural en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 15.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.033,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/616718591",
+    "name": "Banda de Música - Orquesta",
+    "category": "cultura",
+    "category_label": "Cultura",
+    "kind": "theatre",
+    "lat": -31.2590425,
+    "lon": -61.4976978,
+    "description": "Espacio cultural en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 15.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.922,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/1354099333",
+    "name": "Cine Belgrano",
+    "category": "cultura",
+    "category_label": "Cultura",
+    "kind": "theatre",
+    "lat": -31.253442,
+    "lon": -61.4858036,
+    "description": "Espacio cultural en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 15.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.559,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/3348793777",
+    "name": "San Rafael",
+    "category": "templos",
+    "category_label": "Templos",
+    "kind": "place_of_worship",
+    "lat": -31.2538315,
+    "lon": -61.4917748,
+    "description": "Templo en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.138,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/557181798",
+    "name": "Universal",
+    "category": "templos",
+    "category_label": "Templos",
+    "kind": "place_of_worship",
+    "lat": -31.2550699,
+    "lon": -61.4920158,
+    "description": "Templo en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.277,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/1319971774",
+    "name": "Nuestra Señora Del Perpetuo Socorro",
+    "category": "templos",
+    "category_label": "Templos",
+    "kind": "place_of_worship",
+    "lat": -31.2557022,
+    "lon": -61.5152417,
+    "description": "Templo en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.274,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/1319971784",
+    "name": "Capilla Nuestra Señora de Itatí",
+    "category": "templos",
+    "category_label": "Templos",
+    "kind": "place_of_worship",
+    "lat": -31.2317503,
+    "lon": -61.4709354,
+    "description": "Templo en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 3.039,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/3820659058",
+    "name": "Parroquia Santa Rosa",
+    "category": "templos",
+    "category_label": "Templos",
+    "kind": "place_of_worship",
+    "lat": -31.2505399,
+    "lon": -61.4691949,
+    "description": "Templo en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.142,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/3348794094",
+    "name": "Museo Histórico Municipal",
+    "category": "museos",
+    "category_label": "Museos",
+    "kind": "museum",
+    "lat": -31.2531123,
+    "lon": -61.4905812,
+    "description": "Museo en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.112,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/10080572455",
+    "name": "El cuarto",
+    "category": "restaurantes",
+    "category_label": "Restaurantes",
+    "kind": "restaurant",
+    "lat": -31.2540965,
+    "lon": -61.4886057,
+    "description": "Restaurante · cocina pizza, regional, thai, asian, burger, greek",
+    "image": {
+     "url": "https://media-cdn.tripadvisor.com/media/photo-s/0b/59/b6/64/el-cuarto-full-bar.jpg",
+     "credit": null,
+     "license": null,
+     "page": null
+    },
+    "cost": {
+     "amount_usd": 20.0,
+     "source": "estimado",
+     "label": "Consumo por persona estimado"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.33,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "pizza pizza pizzería regional regional típica thai asian burger hamburguesas hamburguesería greek vegetariano"
+  },
+  {
+   "attraction": {
+    "id": "node/3682573807",
+    "name": "Mostaza",
+    "category": "restaurantes",
+    "category_label": "Restaurantes",
+    "kind": "fast_food",
+    "lat": -31.2539955,
+    "lon": -61.4886876,
+    "description": "Restaurante · cocina burger",
+    "image": null,
+    "cost": {
+     "amount_usd": 10.0,
+     "source": "estimado",
+     "label": "Consumo por persona estimado"
+    },
+    "hours": null,
+    "rating": 2.8,
+    "distance_km": 0.317,
+    "website": "https://www.mostazaweb.com.ar/",
+    "wikidata": null
+   },
+   "keywords": "burger hamburguesas hamburguesería comida rápida"
+  },
+  {
+   "attraction": {
+    "id": "node/4334009798",
+    "name": "Pido Pizza",
+    "category": "restaurantes",
+    "category_label": "Restaurantes",
+    "kind": "fast_food",
+    "lat": -31.2525513,
+    "lon": -61.4862476,
+    "description": "Restaurante · cocina pizza",
+    "image": null,
+    "cost": {
+     "amount_usd": 10.0,
+     "source": "estimado",
+     "label": "Consumo por persona estimado"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.509,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "pizza pizza pizzería comida rápida"
+  },
+  {
+   "attraction": {
+    "id": "node/3682675731",
+    "name": "Al Paso",
+    "category": "restaurantes",
+    "category_label": "Restaurantes",
+    "kind": "fast_food",
+    "lat": -31.2529535,
+    "lon": -61.4829325,
+    "description": "Restaurante · cocina sandwich",
+    "image": null,
+    "cost": {
+     "amount_usd": 10.0,
+     "source": "estimado",
+     "label": "Consumo por persona estimado"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.825,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "sandwich sándwiches comida rápida"
+  },
+  {
+   "attraction": {
+    "id": "node/7110408478",
+    "name": "DeMiga Sandwichería",
+    "category": "restaurantes",
+    "category_label": "Restaurantes",
+    "kind": "fast_food",
+    "lat": -31.251198,
+    "lon": -61.4938181,
+    "description": "Restaurante · cocina sandwich",
+    "image": null,
+    "cost": {
+     "amount_usd": 10.0,
+     "source": "estimado",
+     "label": "Consumo por persona estimado"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.262,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "sandwich sándwiches comida rápida"
+  },
+  {
+   "attraction": {
+    "id": "node/7290838224",
+    "name": "Lomitos 2x1",
+    "category": "restaurantes",
+    "category_label": "Restaurantes",
+    "kind": "fast_food",
+    "lat": -31.2651177,
+    "lon": -61.4943552,
+    "description": "Restaurante en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 10.0,
+     "source": "estimado",
+     "label": "Consumo por persona estimado"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.416,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "comida rápida"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572461",
+    "name": "El cuarto",
+    "category": "restaurantes",
+    "category_label": "Restaurantes",
+    "kind": "restaurant",
+    "lat": -31.2541395,
+    "lon": -61.488531,
+    "description": "Restaurante · cocina regional, chicken, coffee shop, burger",
+    "image": null,
+    "cost": {
+     "amount_usd": 20.0,
+     "source": "estimado",
+     "label": "Consumo por persona estimado"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.338,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "regional regional típica chicken pollo coffee shop café cafetería burger hamburguesas hamburguesería"
+  },
+  {
+   "attraction": {
+    "id": "way/595542615",
+    "name": "Mil Uno M1",
+    "category": "restaurantes",
+    "category_label": "Restaurantes",
+    "kind": "restaurant",
+    "lat": -31.2500433,
+    "lon": -61.4758581,
+    "description": "Restaurante en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 20.0,
+     "source": "estimado",
+     "label": "Consumo por persona estimado"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.523,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/6625154733",
+    "name": "Café Martínez",
+    "category": "cafes",
+    "category_label": "Cafés",
+    "kind": "cafe",
+    "lat": -31.2480131,
+    "lon": -61.4908106,
+    "description": "Café en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 7.0,
+     "source": "estimado",
+     "label": "Consumo por persona estimado"
+    },
+    "hours": "Sá-Do 08:30-22:00",
+    "rating": 2.9,
+    "distance_km": 0.516,
+    "website": "https://cafemartinezonline.com.ar",
+    "wikidata": null
+   },
+   "keywords": "coffee shop café cafetería mesas afuera al aire libre"
+  },
+  {
+   "attraction": {
+    "id": "node/3682580960",
+    "name": "Grido",
+    "category": "cafes",
+    "category_label": "Cafés",
+    "kind": "ice_cream",
+    "lat": -31.2515138,
+    "lon": -61.4923901,
+    "description": "Café en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 5.0,
+     "source": "estimado",
+     "label": "Consumo por persona estimado"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.142,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "ice cream helado heladería"
+  },
+  {
+   "attraction": {
+    "id": "node/3682677054",
+    "name": "Grido",
+    "category": "cafes",
+    "category_label": "Cafés",
+    "kind": "ice_cream",
+    "lat": -31.2526188,
+    "lon": -61.4814841,
+    "description": "Café en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 5.0,
+     "source": "estimado",
+     "label": "Consumo por persona estimado"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.962,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "ice cream helado heladería"
+  },
+  {
+   "attraction": {
+    "id": "node/10916835733",
+    "name": "Grido",
+    "category": "cafes",
+    "category_label": "Cafés",
+    "kind": "ice_cream",
+    "lat": -31.2610353,
+    "lon": -61.5003192,
+    "description": "Café en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 5.0,
+     "source": "estimado",
+     "label": "Consumo por persona estimado"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.252,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "ice cream helado heladería"
+  },
+  {
+   "attraction": {
+    "id": "node/10916872224",
+    "name": "Cremolatti",
+    "category": "cafes",
+    "category_label": "Cafés",
+    "kind": "ice_cream",
+    "lat": -31.2498898,
+    "lon": -61.4907975,
+    "description": "Café en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 5.0,
+     "source": "estimado",
+     "label": "Consumo por persona estimado"
+    },
+    "hours": null,
+    "rating": 2.8,
+    "distance_km": 0.311,
+    "website": "https://cremolatti.com.ar/web/locales/?wpsl-search-input=rafaela&wpsl-radius=10&wpsl-results=500",
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12233187267",
+    "name": "Madre Teresa",
+    "category": "monumentos",
+    "category_label": "Monumentos",
+    "kind": "memorial",
+    "lat": -31.2533212,
+    "lon": -61.4918205,
+    "description": "Monumento en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.083,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/5646197812",
+    "name": "Virgen de Guadalupe",
+    "category": "monumentos",
+    "category_label": "Monumentos",
+    "kind": "monument",
+    "lat": -31.258422,
+    "lon": -61.4630693,
+    "description": "Monumento en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.788,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/5675749004",
+    "name": "Monumento a Sarmiento",
+    "category": "monumentos",
+    "category_label": "Monumentos",
+    "kind": "memorial",
+    "lat": -31.2507812,
+    "lon": -61.4734164,
+    "description": "Monumento en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.74,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/5678641442",
+    "name": "Monumento Sociedad Española",
+    "category": "monumentos",
+    "category_label": "Monumentos",
+    "kind": "memorial",
+    "lat": -31.2532492,
+    "lon": -61.4843905,
+    "description": "Monumento en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.689,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/5678733333",
+    "name": "Hermita San Roque",
+    "category": "monumentos",
+    "category_label": "Monumentos",
+    "kind": "memorial",
+    "lat": -31.2635785,
+    "lon": -61.4944103,
+    "description": "Monumento en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.25,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/5830243460",
+    "name": "Monumento General San Martín",
+    "category": "monumentos",
+    "category_label": "Monumentos",
+    "kind": "memorial",
+    "lat": -31.2526814,
+    "lon": -61.4917031,
+    "description": "Monumento en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.013,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12233274508",
+    "name": "Centenario de Rafaela",
+    "category": "monumentos",
+    "category_label": "Monumentos",
+    "kind": "memorial",
+    "lat": -31.2507765,
+    "lon": -61.5037933,
+    "description": "Monumento en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.177,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12233274510",
+    "name": "Guadalupe",
+    "category": "monumentos",
+    "category_label": "Monumentos",
+    "kind": "memorial",
+    "lat": -31.2505373,
+    "lon": -61.5051355,
+    "description": "Monumento en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.307,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12233292048",
+    "name": "Monumento a la Madre",
+    "category": "monumentos",
+    "category_label": "Monumentos",
+    "kind": "memorial",
+    "lat": -31.2538562,
+    "lon": -61.4920262,
+    "description": "Monumento en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.145,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12233675507",
+    "name": "Lehmann",
+    "category": "monumentos",
+    "category_label": "Monumentos",
+    "kind": "memorial",
+    "lat": -31.2515089,
+    "lon": -61.4913749,
+    "description": "Monumento en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.123,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595916848",
+    "name": "Inmigrantes",
+    "category": "monumentos",
+    "category_label": "Monumentos",
+    "kind": "memorial",
+    "lat": -31.2479977,
+    "lon": -61.5043644,
+    "description": "Monumento en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.317,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595967813",
+    "name": "Pérgola",
+    "category": "monumentos",
+    "category_label": "Monumentos",
+    "kind": "monument",
+    "lat": -31.2593689,
+    "lon": -61.5005056,
+    "description": "Monumento en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.133,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595967821",
+    "name": "Reloj Solar",
+    "category": "monumentos",
+    "category_label": "Monumentos",
+    "kind": "monument",
+    "lat": -31.2602746,
+    "lon": -61.5007539,
+    "description": "Monumento en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.219,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12233187268",
+    "name": "Sembrador",
+    "category": "atracciones",
+    "category_label": "Atracciones",
+    "kind": "artwork",
+    "lat": -31.2534037,
+    "lon": -61.4911714,
+    "description": "Atracción en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Gratuito (espacio público)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.098,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12233187270",
+    "name": "Madre Leona",
+    "category": "atracciones",
+    "category_label": "Atracciones",
+    "kind": "artwork",
+    "lat": -31.2529933,
+    "lon": -61.491257,
+    "description": "Atracción en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Gratuito (espacio público)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.055,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12233187271",
+    "name": "León",
+    "category": "atracciones",
+    "category_label": "Atracciones",
+    "kind": "artwork",
+    "lat": -31.2525985,
+    "lon": -61.4911526,
+    "description": "Atracción en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Gratuito (espacio público)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.043,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12233187272",
+    "name": "Labrador",
+    "category": "atracciones",
+    "category_label": "Atracciones",
+    "kind": "artwork",
+    "lat": -31.2522293,
+    "lon": -61.4908464,
+    "description": "Atracción en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Gratuito (espacio público)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.083,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12233187274",
+    "name": "Venus de Milo",
+    "category": "atracciones",
+    "category_label": "Atracciones",
+    "kind": "artwork",
+    "lat": -31.2519888,
+    "lon": -61.4922409,
+    "description": "Atracción en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Gratuito (espacio público)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.091,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12233187275",
+    "name": "Venado",
+    "category": "atracciones",
+    "category_label": "Atracciones",
+    "kind": "artwork",
+    "lat": -31.2523927,
+    "lon": -61.4921559,
+    "description": "Atracción en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Gratuito (espacio público)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.058,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12233253747",
+    "name": "Roca",
+    "category": "atracciones",
+    "category_label": "Atracciones",
+    "kind": "artwork",
+    "lat": -31.2524488,
+    "lon": -61.493321,
+    "description": "Atracción en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Gratuito (espacio público)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.164,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12233253748",
+    "name": "Perón",
+    "category": "atracciones",
+    "category_label": "Atracciones",
+    "kind": "artwork",
+    "lat": -31.2525144,
+    "lon": -61.4929173,
+    "description": "Atracción en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Gratuito (espacio público)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.126,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12235010729",
+    "name": "Mosconi",
+    "category": "atracciones",
+    "category_label": "Atracciones",
+    "kind": "artwork",
+    "lat": -31.2528923,
+    "lon": -61.4904514,
+    "description": "Atracción en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Gratuito (espacio público)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.114,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12235010730",
+    "name": "Garibaldi",
+    "category": "atracciones",
+    "category_label": "Atracciones",
+    "kind": "artwork",
+    "lat": -31.253118,
+    "lon": -61.4890503,
+    "description": "Atracción en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Gratuito (espacio público)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.249,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12235010731",
+    "name": "Belgrano",
+    "category": "atracciones",
+    "category_label": "Atracciones",
+    "kind": "artwork",
+    "lat": -31.2536748,
+    "lon": -61.4855478,
+    "description": "Atracción en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Gratuito (espacio público)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.588,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/5675838499",
+    "name": "Escultura Copón",
+    "category": "atracciones",
+    "category_label": "Atracciones",
+    "kind": "artwork",
+    "lat": -31.2504641,
+    "lon": -61.4686975,
+    "description": "Atracción en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Gratuito (espacio público)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.19,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/5678713654",
+    "name": "Escultura Postes",
+    "category": "atracciones",
+    "category_label": "Atracciones",
+    "kind": "artwork",
+    "lat": -31.2568342,
+    "lon": -61.499914,
+    "description": "Atracción en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Gratuito (espacio público)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.92,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/12223042605",
+    "name": "Cartel de Rafaela",
+    "category": "atracciones",
+    "category_label": "Atracciones",
+    "kind": "attraction",
+    "lat": -31.2724068,
+    "lon": -61.5101232,
+    "description": "Atracción en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.82,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/10080572458",
+    "name": "Parque Apadir",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2506175,
+    "lon": -61.4756063,
+    "description": "Parque en la zona",
+    "image": {
+     "url": "https://loinconsciente.files.wordpress.com/2014/11/parque-apadir-2.jpg",
+     "credit": null,
+     "license": null,
+     "page": null
+    },
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.536,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/420827481",
+    "name": "Plaza 9 de Julio",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2441726,
+    "lon": -61.500226,
+    "description": "Centro del Barrio 9 de Julio, frente al Hospital de la ciudad",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.245,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/41891381",
+    "name": "Plaza 25 de Mayo",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2526931,
+    "lon": -61.4917253,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.016,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/174450181",
+    "name": "Placita Honda",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2591116,
+    "lon": -61.4973145,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.905,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/174465638",
+    "name": "Plaza Esteban Maradona",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2314882,
+    "lon": -61.485984,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.407,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/174465646",
+    "name": "Plaza Colón",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2401548,
+    "lon": -61.4834344,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.587,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/378651165",
+    "name": "Padre Normando Corti",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2501761,
+    "lon": -61.4684582,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.216,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/558332400",
+    "name": "Plaza Eva Perón",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2573982,
+    "lon": -61.4777112,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.424,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/558332725",
+    "name": "Plaza La Paz",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2407806,
+    "lon": -61.4923038,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.316,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/558333276",
+    "name": "Plazoleta Magdalena Bruno",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2489536,
+    "lon": -61.4979859,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.73,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/558334391",
+    "name": "Plazoleta Mario Vecchioli",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2531016,
+    "lon": -61.5026874,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.055,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/565466270",
+    "name": "Plazoleta Centenario",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2507233,
+    "lon": -61.4875037,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.442,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/565468406",
+    "name": "Parque Islas Malvinas",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2531258,
+    "lon": -61.4846093,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.667,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/565469677",
+    "name": "Plaza Ciudad de Fossano",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2480357,
+    "lon": -61.5041883,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.3,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/565470092",
+    "name": "Plaza Carlos Saavedra Lamas",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2459081,
+    "lon": -61.5034028,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.346,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/565470850",
+    "name": "Plaza Luis Fasoli",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2392403,
+    "lon": -61.5002705,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.699,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/589851336",
+    "name": "Plaza Apadir",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2505294,
+    "lon": -61.47578,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.521,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/589851337",
+    "name": "Parque de Eucaliptos",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2493693,
+    "lon": -61.4772241,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.413,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/591401174",
+    "name": "Plaza Sarmiento",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2507705,
+    "lon": -61.4734101,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.741,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595161164",
+    "name": "Plazoleta ferrocarril",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2502538,
+    "lon": -61.4725265,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.832,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595163520",
+    "name": "Parque de Eucaliptus",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2487278,
+    "lon": -61.4762735,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.519,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595880675",
+    "name": "Parque Municipal \"José María Podio\" (Antiguo Vivero Municipal)",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2645383,
+    "lon": -61.4759905,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.991,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595902700",
+    "name": "Reserva natural de Eucaliptus",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2549379,
+    "lon": -61.45524,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 3.466,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595913260",
+    "name": "Patio de las Artes \"Ernesto Fertonani\"",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2523209,
+    "lon": -61.4854005,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.59,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595916838",
+    "name": "Magdalena de Lorenzi",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2464062,
+    "lon": -61.5037438,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.344,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595967822",
+    "name": "Plaza Anfiteatro",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2616869,
+    "lon": -61.5009254,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.344,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595969669",
+    "name": "Parque lineal recreacional y deportivo",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2665348,
+    "lon": -61.5000921,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.747,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595969672",
+    "name": "Parque lineal recreacional y deportivo",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2711378,
+    "lon": -61.5075296,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.558,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595971901",
+    "name": "Plaza \"Pablo Pizzurno\"",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2640406,
+    "lon": -61.4948113,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.308,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595974214",
+    "name": "Bosque \"Grossi\"",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2635359,
+    "lon": -61.5061227,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.84,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595975433",
+    "name": "Plaza \"Antártida Argentina\"",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2631993,
+    "lon": -61.5171445,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.699,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/595977627",
+    "name": "Plaza 17 de Octubre",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2687415,
+    "lon": -61.5068931,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.31,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/596997574",
+    "name": "Plaza 2 de Abril",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.271674,
+    "lon": -61.4714085,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.86,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/602188803",
+    "name": "Bosque Educativo Municipal \"Norberto Américo Besaccia\"",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2750228,
+    "lon": -61.4953739,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.519,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/602190837",
+    "name": "Parque Regional Sur de Rafaela",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2696495,
+    "lon": -61.5204157,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 3.331,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/602211937",
+    "name": "Bosquecito \"Apadir\"",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2250152,
+    "lon": -61.4880994,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 3.085,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/617104126",
+    "name": "Predio La Flor",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2510972,
+    "lon": -61.5048947,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.275,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/677301500",
+    "name": "Plaza Madre Teresa de Calcuta",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2318989,
+    "lon": -61.4701678,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 3.074,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/677301505",
+    "name": "Plaza Progreso",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.227717,
+    "lon": -61.4752599,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 3.173,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/677301517",
+    "name": "Plaza José Hernández",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2380823,
+    "lon": -61.5079421,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.24,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/677301524",
+    "name": "Plaza Italia",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2414018,
+    "lon": -61.4759215,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.942,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/677301527",
+    "name": "Plaza del Soldado",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2476157,
+    "lon": -61.5103053,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.863,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/677301528",
+    "name": "Plaza Independencia",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.245268,
+    "lon": -61.5139573,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.276,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/677301529",
+    "name": "Plaza 1 de Mayo",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2544061,
+    "lon": -61.5154191,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.273,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/677301530",
+    "name": "Plaza Santa Rita",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.255307,
+    "lon": -61.5105341,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.825,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/677306842",
+    "name": "Plaza de la Bandera",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2635519,
+    "lon": -61.5104065,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.163,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/677306843",
+    "name": "Plaza Elda Massoni",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2759088,
+    "lon": -61.5141927,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 3.366,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/813234194",
+    "name": "Plaza Ibo Zamora",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2374378,
+    "lon": -61.4653515,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 3.012,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/1320078537",
+    "name": "Plazoleta Tosco",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2541964,
+    "lon": -61.4991737,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.742,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/1320771279",
+    "name": "Plazoleta Suiza",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2629255,
+    "lon": -61.5002779,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.414,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "way/1448625320",
+    "name": "Parque Hospital Regional Rafaela",
+    "category": "parques",
+    "category_label": "Parques",
+    "kind": "park",
+    "lat": -31.2288188,
+    "lon": -61.4868742,
+    "description": "Parque en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 0.0,
+     "source": "estimado",
+     "label": "Sin costo de entrada (estimado)"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.682,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": ""
+  }
+ ]
+}

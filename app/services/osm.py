@@ -43,13 +43,14 @@ CATEGORIES: dict[str, Category] = {
         Category(
             "atracciones",
             "Atracciones",
-            (("tourism", ("attraction", "viewpoint", "zoo", "aquarium", "theme_park")),),
+            (("tourism", ("attraction", "viewpoint", "artwork", "zoo", "aquarium", "theme_park")),),
             0.0,
             45,
         ),
         Category("parques", "Parques", (("leisure", ("park", "garden", "nature_reserve")),), 0.0, 60),
+        Category("cultura", "Cultura", (("amenity", ("theatre", "cinema", "arts_centre")),), 10.0, 120, max_items=10),
         Category("templos", "Templos", (("amenity", ("place_of_worship",)),), 0.0, 30, require_wikidata=True),
-        Category("restaurantes", "Restaurantes", (("amenity", ("restaurant",)),), 20.0, 75, max_items=14),
+        Category("restaurantes", "Restaurantes", (("amenity", ("restaurant", "fast_food")),), 20.0, 75, max_items=14),
         Category("cafes", "Cafés", (("amenity", ("cafe", "ice_cream")),), 7.0, 40, max_items=12),
     )
 }
@@ -68,6 +69,10 @@ KINDS: dict[str, tuple[float, int]] = {
     "memorial": (0.0, 20),
     "monument": (0.0, 20),
     "ice_cream": (5.0, 25),
+    "fast_food": (10.0, 45),
+    "theatre": (15.0, 120),
+    "cinema": (8.0, 120),
+    "arts_centre": (0.0, 60),
 }
 
 
@@ -160,7 +165,7 @@ def bounding_box(lat: float, lon: float, radius_m: int) -> tuple[float, float, f
     return lat - dlat, lon - dlon, lat + dlat, lon + dlon
 
 
-def build_query(lat: float, lon: float, radius_m: int, slugs: list[str]) -> str:
+def build_query(lat: float, lon: float, radius_m: int, slugs: list[str], exhaustive: bool = False) -> str:
     """Una sola consulta Overpass: unión de todos los filtros dentro de un bbox.
 
     Filtrar por bbox es mucho más barato para Overpass que `around` (medido:
@@ -171,7 +176,7 @@ def build_query(lat: float, lon: float, radius_m: int, slugs: list[str]) -> str:
     stmts = []
     for slug in slugs:
         cat = CATEGORIES[slug]
-        extra = '["wikidata"]' if cat.require_wikidata else ""
+        extra = '["wikidata"]' if cat.require_wikidata and not exhaustive else ""
         stmts += [f'nwr{_tag_filter(k, v)}["name"]{extra};' for k, v in cat.rules]
     return (
         f"[out:json][timeout:40][bbox:{south:.6f},{west:.6f},{north:.6f},{east:.6f}];"
@@ -179,9 +184,9 @@ def build_query(lat: float, lon: float, radius_m: int, slugs: list[str]) -> str:
     )
 
 
-def classify(tags: dict) -> Category | None:
+def classify(tags: dict, exhaustive: bool = False) -> Category | None:
     for cat in CATEGORIES.values():
-        if cat.require_wikidata and "wikidata" not in tags:
+        if cat.require_wikidata and not exhaustive and "wikidata" not in tags:
             continue
         if any(tags.get(key) in values for key, values in cat.rules):
             return cat
@@ -192,8 +197,17 @@ def _relevance(tags: dict) -> tuple:
     return ("wikidata" in tags, "wikipedia" in tags, len(tags))
 
 
-def select_candidates(elements: list[dict], center: tuple[float, float] | None = None, radius_m: int | None = None) -> list[dict]:
-    """Deduplica, clasifica, recorta al radio y deja los N más relevantes por categoría."""
+def select_candidates(
+    elements: list[dict],
+    center: tuple[float, float] | None = None,
+    radius_m: int | None = None,
+    exhaustive: bool = False,
+) -> list[dict]:
+    """Deduplica, clasifica, recorta al radio y deja los N más relevantes por categoría.
+
+    Con `exhaustive=True` (indexador de zonas) no hay tope por categoría ni se exige
+    Wikidata a los templos: en una ciudad chica interesa tenerlos todos.
+    """
     seen: set[str] = set()
     by_cat: dict[str, list[dict]] = {}
     for el in elements:
@@ -203,7 +217,7 @@ def select_candidates(elements: list[dict], center: tuple[float, float] | None =
             continue
         lat = el.get("lat", (el.get("center") or {}).get("lat"))
         lon = el.get("lon", (el.get("center") or {}).get("lon"))
-        cat = classify(tags)
+        cat = classify(tags, exhaustive)
         if lat is None or lon is None or cat is None:
             continue
         if center and radius_m and haversine_km(center, (lat, lon)) * 1000 > radius_m:
@@ -214,7 +228,7 @@ def select_candidates(elements: list[dict], center: tuple[float, float] | None =
     selected: list[dict] = []
     for slug, items in by_cat.items():
         items.sort(key=lambda p: _relevance(p["tags"]), reverse=True)
-        selected.extend(items[: CATEGORIES[slug].max_items])
+        selected.extend(items if exhaustive else items[: CATEGORIES[slug].max_items])
     return selected
 
 

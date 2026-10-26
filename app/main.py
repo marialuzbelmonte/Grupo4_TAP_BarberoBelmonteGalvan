@@ -10,6 +10,8 @@ from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+from app import db
+from app.api import accounts
 from app.api.routes import router
 from app.config import settings
 
@@ -24,13 +26,19 @@ async def lifespan(app: FastAPI):
     connector = aiohttp.TCPConnector(limit=40, ttl_dns_cache=300)
     timeout = aiohttp.ClientTimeout(total=settings.http_timeout)
     headers = {"User-Agent": settings.user_agent}
-    async with aiohttp.ClientSession(connector=connector, timeout=timeout, headers=headers) as session:
-        app.state.http = session
-        yield
+    app.state.db = await db.connect()
+    try:
+        async with aiohttp.ClientSession(connector=connector, timeout=timeout, headers=headers) as session:
+            app.state.http = session
+            yield
+    finally:
+        if app.state.db is not None:
+            await app.state.db.close()
 
 
 app = FastAPI(title="Rumbo · Generador de itinerarios", version="1.0.0", lifespan=lifespan)
 app.include_router(router, prefix="/api")
+app.include_router(accounts.router, prefix="/api")
 
 
 @app.middleware("http")

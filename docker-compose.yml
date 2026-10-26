@@ -9,4 +9,29 @@ services:
         required: false
     environment:
       PORT: "8000"
+      # Dentro de la red de compose la base se llama "db" (no localhost).
+      DATABASE_URL: postgresql://rumbo:rumbo@db:5432/rumbo
+    depends_on:
+      db:
+        condition: service_healthy
     restart: unless-stopped
+
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: rumbo
+      POSTGRES_PASSWORD: rumbo
+      POSTGRES_DB: rumbo
+    ports:
+      - "5433:5432"  # 5433 en la compu: no choca con otro PostgreSQL instalado
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rumbo -d rumbo"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+volumes:
+  pgdata:

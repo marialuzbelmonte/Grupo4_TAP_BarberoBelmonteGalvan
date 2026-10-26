@@ -18,7 +18,7 @@ _CHARGE_RE = re.compile(r"^\s*(\d+(?:[.,]\d+)?)\s*([A-Z]{3})\s*$")
 _USD_RATES = {code: rate for code, rate in wikidata.CURRENCIES.values()}
 _SINGULAR = {
     "museos": "Museo", "monumentos": "Monumento", "atracciones": "Atracción", "parques": "Parque",
-    "templos": "Templo", "restaurantes": "Restaurante", "cafes": "Café",
+    "templos": "Templo", "restaurantes": "Restaurante", "cafes": "Café", "cultura": "Espacio cultural",
 }
 
 

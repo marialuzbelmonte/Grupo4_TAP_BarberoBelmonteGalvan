@@ -1,8 +1,8 @@
 // Controlador del cliente: estado de la interfaz, eventos y llamadas REST.
+import { initAccount, saveItinerary } from "./account.js";
 import { CATEGORY_STYLE, DAY_COLORS, MapView } from "./map.js";
 import { escapeHtml, fmtKm, fmtRating, fmtUsd, fmtUsdStrict, haversineKm, matches } from "./text.js";
-
-const $ = (sel) => document.querySelector(sel);
+import { $, api, busy, downloadPdf, toast } from "./ui.js";
 
 const state = {
   destination: null, // {name, display_name, lat, lon, bbox}
@@ -15,50 +15,13 @@ const state = {
   selected: new Set(),
   itinerary: null,
   picking: false,
+  zone: null, // zona indexada en PostgreSQL (p. ej. Rafaela): la búsqueda va al servidor
+  ftsRanks: null, // Map id -> relevancia de la última búsqueda full-text
 };
 
 const map = new MapView($("#map"));
 
 // ------------------------------------------------------------------ utilidades
-
-async function api(path, options = {}) {
-  const res = await fetch(`/api${path}`, {
-    headers: options.body ? { "Content-Type": "application/json" } : undefined,
-    ...options,
-  });
-  if (!res.ok) {
-    let detail = `Error ${res.status}`;
-    try {
-      const data = await res.json();
-      detail = typeof data.detail === "string" ? data.detail : detail;
-    } catch { /* respuesta sin JSON */ }
-    throw new Error(detail);
-  }
-  return res;
-}
-
-let toastTimer;
-function toast(message, kind = "info") {
-  const el = $("#toast");
-  el.textContent = message;
-  el.dataset.kind = kind;
-  el.classList.add("is-visible");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.remove("is-visible"), 5200);
-}
-
-function busy(button, isBusy, label) {
-  if (isBusy) {
-    button.dataset.label = button.textContent;
-    button.textContent = label;
-    button.disabled = true;
-    button.setAttribute("aria-busy", "true");
-  } else {
-    button.textContent = button.dataset.label ?? button.textContent;
-    button.disabled = false;
-    button.removeAttribute("aria-busy");
-  }
-}
 
 function unlock(step) {
   $(`#step-${step}`).classList.remove("is-locked");
@@ -223,7 +186,7 @@ async function loadAttractions() {
   const { lat, lon } = state.hotel;
   const radius = $("#radius").value;
   $("#grid").innerHTML = Array.from({ length: 6 }, () => '<div class="card card-skeleton" aria-hidden="true"></div>').join("");
-  $("#exploreMeta").textContent = "Consultando OpenStreetMap, Wikidata y Wikimedia Commons…";
+  $("#exploreMeta").textContent = "Buscando lugares cerca del hotel…";
   try {
     const data = await (await api(`/attractions?lat=${lat}&lon=${lon}&radius=${radius}`)).json();
     // Conserva lo elegido que siga existiendo en la nueva búsqueda.
@@ -233,6 +196,9 @@ async function loadAttractions() {
       if (!fresh.some((f) => f.id === id)) fresh.push({ ...a, distance_km: haversineKm(state.hotel, a) });
     }
     state.attractions = fresh.sort((a, b) => a.distance_km - b.distance_km);
+    state.zone = data.meta.zone ?? null;
+    state.ftsRanks = null;
+    if (state.zone && state.query.trim()) await runFullText();
     renderMeta(data.meta);
     renderChips();
     renderGrid();
@@ -244,6 +210,13 @@ async function loadAttractions() {
 }
 
 function renderMeta(meta) {
+  if (meta.zone) {
+    $("#exploreMeta").innerHTML = `
+      <span><strong>${meta.count}</strong> lugares</span>
+      <span class="meta-note">Índice local de ${escapeHtml(meta.zone_name)}: búsqueda full-text en PostgreSQL</span>
+      <span class="mono">${meta.db_ms} ms</span>`;
+    return;
+  }
   const speedup = meta.enrich_wall_ms > 0 ? meta.enrich_sequential_ms / meta.enrich_wall_ms : 1;
   $("#exploreMeta").innerHTML = `
     <span><strong>${meta.count}</strong> lugares</span>
@@ -291,18 +264,46 @@ function renderChips() {
 let filterTimer;
 $("#filterInput").addEventListener("input", (e) => {
   clearTimeout(filterTimer);
-  filterTimer = setTimeout(() => {
+  // En zonas indexadas cada búsqueda va a PostgreSQL: se espera un poco más entre teclas.
+  filterTimer = setTimeout(async () => {
     state.query = e.target.value;
+    if (state.zone) await runFullText();
     renderGrid();
-  }, 120);
+  }, state.zone ? 220 : 120);
 });
 
+async function runFullText() {
+  const q = state.query.trim();
+  const info = $("#ftsInfo");
+  if (!q) {
+    state.ftsRanks = null;
+    info.hidden = true;
+    return;
+  }
+  const { lat, lon } = state.hotel;
+  const params = new URLSearchParams({ zone: state.zone, q, lat, lon, radius: $("#radius").value });
+  try {
+    const data = await (await api(`/places/search?${params}`)).json();
+    state.ftsRanks = new Map(data.results.map((r) => [r.id, r.rank]));
+    info.hidden = false;
+    info.innerHTML = data.tsquery
+      ? `PostgreSQL · <code>to_tsquery('${escapeHtml(data.tsquery)}')</code> · ${data.results.length} resultados en ${data.ms} ms, ordenados por relevancia`
+      : "Escribí palabras para buscar.";
+  } catch {
+    state.ftsRanks = null; // si falla el servidor, se filtra en el navegador
+    info.hidden = true;
+  }
+}
+
 function visibleAttractions() {
-  return state.attractions.filter(
-    (a) =>
-      (state.activeCategories.size === 0 || state.activeCategories.has(a.category)) &&
-      matches(state.query, a.name, a.description, a.category_label),
-  );
+  const inCategory = (a) => state.activeCategories.size === 0 || state.activeCategories.has(a.category);
+  if (state.ftsRanks) {
+    // Zona indexada: el orden lo da la relevancia calculada por PostgreSQL (ts_rank_cd).
+    return state.attractions
+      .filter((a) => inCategory(a) && state.ftsRanks.has(a.id))
+      .sort((a, b) => state.ftsRanks.get(b.id) - state.ftsRanks.get(a.id) || a.distance_km - b.distance_km);
+  }
+  return state.attractions.filter((a) => inCategory(a) && matches(state.query, a.name, a.description, a.category_label));
 }
 
 function stars(rating) {
@@ -362,14 +363,90 @@ function renderGrid() {
 
 $("#grid").addEventListener("change", (e) => {
   const id = e.target.dataset.pick;
-  if (!id) return;
-  if (e.target.checked) state.selected.add(id);
+  if (id) setSelected(id, e.target.checked);
+});
+
+function setSelected(id, on) {
+  if (on) state.selected.add(id);
   else state.selected.delete(id);
-  const card = e.target.closest(".card");
-  card.classList.toggle("is-selected", e.target.checked);
-  card.querySelector(".card-pick-text").textContent = e.target.checked ? "En el itinerario" : "Agregar al itinerario";
+  const card = document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);
+  if (card) {
+    card.classList.toggle("is-selected", on);
+    card.querySelector("input").checked = on;
+    card.querySelector(".card-pick-text").textContent = on ? "En el itinerario" : "Agregar al itinerario";
+  }
   map.refreshSelection(state.selected);
   updateTray();
+}
+
+// ------------------------------------------------------------------ pedidos a la IA
+
+$("#askForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const request = $("#askInput").value.trim();
+  if (request.length < 3 || !state.hotel) return;
+  const button = e.submitter ?? e.target.querySelector("button");
+  const out = $("#askResult");
+  busy(button, true, "Buscando…");
+  out.innerHTML = '<p class="ask-status">La IA está buscando entre los lugares reales de la zona…</p>';
+  try {
+    const body = {
+      request, lat: state.hotel.lat, lon: state.hotel.lon,
+      radius: Number($("#radius").value), exclude: [...state.selected],
+    };
+    const res = await (await api("/suggest", { method: "POST", body: JSON.stringify(body) })).json();
+    renderSuggestions(res);
+    $("#askInput").value = "";
+  } catch (err) {
+    out.innerHTML = `<p class="ask-status">${escapeHtml(err.message)}</p>`;
+  } finally {
+    busy(button, false);
+  }
+});
+
+function renderSuggestions(res) {
+  const out = $("#askResult");
+  const by = res.source === "gemini" ? "Elegido por Gemini" : "Elegido por la búsqueda (Gemini no disponible)";
+  if (!res.suggestions.length) {
+    out.innerHTML = `<p class="ask-status">No encontré lugares para «${escapeHtml(res.interpreted_as)}» en este radio.
+      Probá ampliarlo o pedir otra cosa.</p>`;
+    return;
+  }
+  for (const { attraction } of res.suggestions) {
+    // Si el lugar no estaba en la lista (otro filtro u otra búsqueda), se incorpora.
+    if (!state.attractions.some((a) => a.id === attraction.id)) state.attractions.push(attraction);
+    state.selected.add(attraction.id);
+  }
+  out.innerHTML = res.suggestions
+    .map(
+      ({ attraction: a, reason }) => `
+      <div class="ask-pick" data-id="${escapeHtml(a.id)}">
+        <span class="ask-check" aria-hidden="true">✓</span>
+        <div>
+          <p class="ask-name">Agregué <strong>${escapeHtml(a.name)}</strong> <span class="mono">· ${fmtKm(a.distance_km)} del hotel</span></p>
+          <p class="ask-reason">${escapeHtml(reason)}</p>
+          <p class="ask-by mono">${by} · entendí: «${escapeHtml(res.interpreted_as)}» · ${res.searched} candidatos</p>
+        </div>
+        <div class="ask-actions">
+          <button class="btn btn-line btn-small" type="button" data-ask="view">Ver</button>
+          <button class="btn btn-line btn-small" type="button" data-ask="remove">Quitar</button>
+        </div>
+      </div>`,
+    )
+    .join("");
+  renderGrid();
+}
+
+$("#askResult").addEventListener("click", (e) => {
+  const button = e.target.closest("button[data-ask]");
+  if (!button) return;
+  const pick = button.closest(".ask-pick");
+  if (button.dataset.ask === "view") {
+    focusCard(pick.dataset.id);
+  } else {
+    setSelected(pick.dataset.id, false);
+    pick.remove();
+  }
 });
 
 $("#grid").addEventListener("mouseover", (e) => {
@@ -509,26 +586,20 @@ function renderItinerary(it) {
         </table>
       </div>
       <p class="budget-note">${escapeHtml(it.budget.note)}</p>
-      <button class="btn btn-stamp" type="button" id="exportPdf">Exportar a PDF</button>
+      <div class="itin-actions">
+        <button class="btn btn-stamp" type="button" id="exportPdf">Exportar a PDF</button>
+        <button class="btn btn-line" type="button" id="saveItin">Guardar en mis itinerarios</button>
+      </div>
     </section>`;
   $("#exportPdf").addEventListener("click", exportPdf);
+  $("#saveItin").addEventListener("click", (e) => saveItinerary(state.itinerary, e.currentTarget));
 }
 
 async function exportPdf(e) {
   const button = e.currentTarget;
   busy(button, true, "Generando PDF…");
   try {
-    const res = await api("/itinerary/pdf", { method: "POST", body: JSON.stringify(state.itinerary) });
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    const match = /filename="([^"]+)"/.exec(res.headers.get("Content-Disposition") ?? "");
-    link.href = url;
-    link.download = match ? match[1] : "itinerario.pdf";
-    document.body.append(link);
-    link.click();
-    link.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    await downloadPdf(state.itinerary);
   } catch (err) {
     toast(`No se pudo exportar: ${err.message}`, "error");
   } finally {
@@ -538,7 +609,17 @@ async function exportPdf(e) {
 
 // ------------------------------------------------------------------ arranque
 
+// Abre un itinerario guardado: se muestra igual que uno recién generado.
+function showSavedItinerary(it) {
+  state.itinerary = it;
+  unlock("itinerario");
+  renderItinerary(it);
+  map.drawRoute(it);
+  scrollToStep("itinerario");
+}
+
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && state.picking) setPicking(false);
 });
 loadCategories();
+initAccount({ openItinerary: showSavedItinerary });
