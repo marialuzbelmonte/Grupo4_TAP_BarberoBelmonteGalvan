@@ -24,7 +24,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.434,
     "website": null,
     "wikidata": null
@@ -48,7 +48,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.736,
     "website": null,
     "wikidata": null
@@ -72,7 +72,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.238,
     "website": null,
     "wikidata": null
@@ -96,7 +96,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.566,
     "website": null,
     "wikidata": null
@@ -120,7 +120,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.551,
     "website": null,
     "wikidata": null
@@ -144,7 +144,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.348,
     "website": null,
     "wikidata": null
@@ -168,7 +168,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.033,
     "website": null,
     "wikidata": null
@@ -192,7 +192,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.922,
     "website": null,
     "wikidata": null
@@ -216,7 +216,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.559,
     "website": null,
     "wikidata": null
@@ -240,7 +240,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.138,
     "website": null,
     "wikidata": null
@@ -264,7 +264,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.277,
     "website": null,
     "wikidata": null
@@ -288,7 +288,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.274,
     "website": null,
     "wikidata": null
@@ -312,7 +312,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 3.039,
     "website": null,
     "wikidata": null
@@ -336,7 +336,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.142,
     "website": null,
     "wikidata": null
@@ -360,7 +360,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.112,
     "website": null,
     "wikidata": null
@@ -389,7 +389,7 @@
      "label": "Consumo por persona estimado"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.33,
     "website": null,
     "wikidata": null
@@ -413,7 +413,7 @@
      "label": "Consumo por persona estimado"
     },
     "hours": null,
-    "rating": 2.8,
+    "rating": null,
     "distance_km": 0.317,
     "website": "https://www.mostazaweb.com.ar/",
     "wikidata": null
@@ -437,7 +437,7 @@
      "label": "Consumo por persona estimado"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.509,
     "website": null,
     "wikidata": null
@@ -461,7 +461,7 @@
      "label": "Consumo por persona estimado"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.825,
     "website": null,
     "wikidata": null
@@ -485,7 +485,7 @@
      "label": "Consumo por persona estimado"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.262,
     "website": null,
     "wikidata": null
@@ -509,7 +509,7 @@
      "label": "Consumo por persona estimado"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.416,
     "website": null,
     "wikidata": null
@@ -533,7 +533,7 @@
      "label": "Consumo por persona estimado"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.338,
     "website": null,
     "wikidata": null
@@ -557,7 +557,7 @@
      "label": "Consumo por persona estimado"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.523,
     "website": null,
     "wikidata": null
@@ -581,7 +581,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.8,
+    "rating": null,
     "distance_km": 0.328,
     "website": "https://es-la.facebook.com/Bacanbar/",
     "wikidata": null
@@ -605,7 +605,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.556,
     "website": null,
     "wikidata": null
@@ -634,7 +634,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.8,
+    "rating": null,
     "distance_km": 0.328,
     "website": "https://es-la.facebook.com/barkingdog.bar/",
     "wikidata": null
@@ -663,7 +663,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": "Abierto 24 h",
-    "rating": 2.9,
+    "rating": null,
     "distance_km": 0.314,
     "website": "https://es.restaurantguru.com/Rubik-Resto-Bar-Rafaela",
     "wikidata": null
@@ -692,7 +692,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.58,
     "website": null,
     "wikidata": null
@@ -721,7 +721,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.575,
     "website": null,
     "wikidata": null
@@ -750,7 +750,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.592,
     "website": null,
     "wikidata": null
@@ -774,7 +774,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": "Abierto 24 h",
-    "rating": 2.8,
+    "rating": null,
     "distance_km": 0.816,
     "website": null,
     "wikidata": null
@@ -798,7 +798,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.691,
     "website": null,
     "wikidata": null
@@ -822,7 +822,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.246,
     "website": null,
     "wikidata": null
@@ -851,7 +851,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.331,
     "website": null,
     "wikidata": null
@@ -875,7 +875,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.092,
     "website": null,
     "wikidata": null
@@ -899,7 +899,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.526,
     "website": null,
     "wikidata": null
@@ -923,7 +923,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.325,
     "website": null,
     "wikidata": null
@@ -947,7 +947,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.172,
     "website": null,
     "wikidata": null
@@ -971,7 +971,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.501,
     "website": null,
     "wikidata": null
@@ -995,7 +995,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.244,
     "website": null,
     "wikidata": null
@@ -1019,7 +1019,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.825,
     "website": null,
     "wikidata": null
@@ -1043,7 +1043,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.51,
     "website": null,
     "wikidata": null
@@ -1067,7 +1067,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.347,
     "website": null,
     "wikidata": null
@@ -1091,7 +1091,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.669,
     "website": null,
     "wikidata": null
@@ -1115,7 +1115,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.861,
     "website": null,
     "wikidata": null
@@ -1139,7 +1139,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.428,
     "website": null,
     "wikidata": null
@@ -1163,7 +1163,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.268,
     "website": null,
     "wikidata": null
@@ -1187,7 +1187,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.345,
     "website": null,
     "wikidata": null
@@ -1211,7 +1211,7 @@
      "label": "Estimación por tipo de lugar"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.303,
     "website": null,
     "wikidata": null
@@ -1235,7 +1235,7 @@
      "label": "Consumo por persona estimado"
     },
     "hours": "Sá-Do 08:30-22:00",
-    "rating": 2.9,
+    "rating": null,
     "distance_km": 0.516,
     "website": "https://cafemartinezonline.com.ar",
     "wikidata": null
@@ -1259,7 +1259,7 @@
      "label": "Consumo por persona estimado"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.142,
     "website": null,
     "wikidata": null
@@ -1283,7 +1283,7 @@
      "label": "Consumo por persona estimado"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.962,
     "website": null,
     "wikidata": null
@@ -1307,7 +1307,7 @@
      "label": "Consumo por persona estimado"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.252,
     "website": null,
     "wikidata": null
@@ -1331,7 +1331,7 @@
      "label": "Consumo por persona estimado"
     },
     "hours": null,
-    "rating": 2.8,
+    "rating": null,
     "distance_km": 0.311,
     "website": "https://cremolatti.com.ar/web/locales/?wpsl-search-input=rafaela&wpsl-radius=10&wpsl-results=500",
     "wikidata": null
@@ -1355,7 +1355,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.083,
     "website": null,
     "wikidata": null
@@ -1379,7 +1379,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.788,
     "website": null,
     "wikidata": null
@@ -1403,7 +1403,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.74,
     "website": null,
     "wikidata": null
@@ -1427,7 +1427,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.689,
     "website": null,
     "wikidata": null
@@ -1451,7 +1451,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.25,
     "website": null,
     "wikidata": null
@@ -1475,7 +1475,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.013,
     "website": null,
     "wikidata": null
@@ -1499,7 +1499,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.177,
     "website": null,
     "wikidata": null
@@ -1523,7 +1523,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.307,
     "website": null,
     "wikidata": null
@@ -1547,7 +1547,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.145,
     "website": null,
     "wikidata": null
@@ -1571,7 +1571,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.123,
     "website": null,
     "wikidata": null
@@ -1595,7 +1595,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.317,
     "website": null,
     "wikidata": null
@@ -1619,7 +1619,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.133,
     "website": null,
     "wikidata": null
@@ -1643,7 +1643,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.219,
     "website": null,
     "wikidata": null
@@ -1667,7 +1667,7 @@
      "label": "Gratuito (espacio público)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.098,
     "website": null,
     "wikidata": null
@@ -1691,7 +1691,7 @@
      "label": "Gratuito (espacio público)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.055,
     "website": null,
     "wikidata": null
@@ -1715,7 +1715,7 @@
      "label": "Gratuito (espacio público)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.043,
     "website": null,
     "wikidata": null
@@ -1739,7 +1739,7 @@
      "label": "Gratuito (espacio público)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.083,
     "website": null,
     "wikidata": null
@@ -1763,7 +1763,7 @@
      "label": "Gratuito (espacio público)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.091,
     "website": null,
     "wikidata": null
@@ -1787,7 +1787,7 @@
      "label": "Gratuito (espacio público)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.058,
     "website": null,
     "wikidata": null
@@ -1811,7 +1811,7 @@
      "label": "Gratuito (espacio público)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.164,
     "website": null,
     "wikidata": null
@@ -1835,7 +1835,7 @@
      "label": "Gratuito (espacio público)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.126,
     "website": null,
     "wikidata": null
@@ -1859,7 +1859,7 @@
      "label": "Gratuito (espacio público)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.114,
     "website": null,
     "wikidata": null
@@ -1883,7 +1883,7 @@
      "label": "Gratuito (espacio público)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.249,
     "website": null,
     "wikidata": null
@@ -1907,7 +1907,7 @@
      "label": "Gratuito (espacio público)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.588,
     "website": null,
     "wikidata": null
@@ -1931,7 +1931,7 @@
      "label": "Gratuito (espacio público)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.19,
     "website": null,
     "wikidata": null
@@ -1955,7 +1955,7 @@
      "label": "Gratuito (espacio público)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.92,
     "website": null,
     "wikidata": null
@@ -1979,7 +1979,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.82,
     "website": null,
     "wikidata": null
@@ -2008,7 +2008,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.536,
     "website": null,
     "wikidata": null
@@ -2032,7 +2032,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.245,
     "website": null,
     "wikidata": null
@@ -2056,7 +2056,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.016,
     "website": null,
     "wikidata": null
@@ -2080,7 +2080,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.905,
     "website": null,
     "wikidata": null
@@ -2104,7 +2104,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.407,
     "website": null,
     "wikidata": null
@@ -2128,7 +2128,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.587,
     "website": null,
     "wikidata": null
@@ -2152,7 +2152,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.216,
     "website": null,
     "wikidata": null
@@ -2176,7 +2176,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.424,
     "website": null,
     "wikidata": null
@@ -2200,7 +2200,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.316,
     "website": null,
     "wikidata": null
@@ -2224,7 +2224,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.73,
     "website": null,
     "wikidata": null
@@ -2248,7 +2248,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.055,
     "website": null,
     "wikidata": null
@@ -2272,7 +2272,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.442,
     "website": null,
     "wikidata": null
@@ -2296,7 +2296,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.667,
     "website": null,
     "wikidata": null
@@ -2320,7 +2320,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.3,
     "website": null,
     "wikidata": null
@@ -2344,7 +2344,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.346,
     "website": null,
     "wikidata": null
@@ -2368,7 +2368,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.699,
     "website": null,
     "wikidata": null
@@ -2392,7 +2392,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.521,
     "website": null,
     "wikidata": null
@@ -2416,7 +2416,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.413,
     "website": null,
     "wikidata": null
@@ -2440,7 +2440,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.741,
     "website": null,
     "wikidata": null
@@ -2464,7 +2464,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.832,
     "website": null,
     "wikidata": null
@@ -2488,7 +2488,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.519,
     "website": null,
     "wikidata": null
@@ -2512,7 +2512,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.991,
     "website": null,
     "wikidata": null
@@ -2536,7 +2536,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 3.466,
     "website": null,
     "wikidata": null
@@ -2560,7 +2560,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.59,
     "website": null,
     "wikidata": null
@@ -2584,7 +2584,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.344,
     "website": null,
     "wikidata": null
@@ -2608,7 +2608,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.344,
     "website": null,
     "wikidata": null
@@ -2632,7 +2632,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.747,
     "website": null,
     "wikidata": null
@@ -2656,7 +2656,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.558,
     "website": null,
     "wikidata": null
@@ -2680,7 +2680,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.308,
     "website": null,
     "wikidata": null
@@ -2704,7 +2704,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.84,
     "website": null,
     "wikidata": null
@@ -2728,7 +2728,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.699,
     "website": null,
     "wikidata": null
@@ -2752,7 +2752,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.31,
     "website": null,
     "wikidata": null
@@ -2776,7 +2776,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.86,
     "website": null,
     "wikidata": null
@@ -2800,7 +2800,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.519,
     "website": null,
     "wikidata": null
@@ -2824,7 +2824,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 3.331,
     "website": null,
     "wikidata": null
@@ -2848,7 +2848,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 3.085,
     "website": null,
     "wikidata": null
@@ -2872,7 +2872,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.275,
     "website": null,
     "wikidata": null
@@ -2896,7 +2896,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 3.074,
     "website": null,
     "wikidata": null
@@ -2920,7 +2920,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 3.173,
     "website": null,
     "wikidata": null
@@ -2944,7 +2944,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.24,
     "website": null,
     "wikidata": null
@@ -2968,7 +2968,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.942,
     "website": null,
     "wikidata": null
@@ -2992,7 +2992,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.863,
     "website": null,
     "wikidata": null
@@ -3016,7 +3016,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.276,
     "website": null,
     "wikidata": null
@@ -3040,7 +3040,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.273,
     "website": null,
     "wikidata": null
@@ -3064,7 +3064,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.825,
     "website": null,
     "wikidata": null
@@ -3088,7 +3088,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.163,
     "website": null,
     "wikidata": null
@@ -3112,7 +3112,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 3.366,
     "website": null,
     "wikidata": null
@@ -3136,7 +3136,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 3.012,
     "website": null,
     "wikidata": null
@@ -3160,7 +3160,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 0.742,
     "website": null,
     "wikidata": null
@@ -3184,7 +3184,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 1.414,
     "website": null,
     "wikidata": null
@@ -3208,7 +3208,7 @@
      "label": "Sin costo de entrada (estimado)"
     },
     "hours": null,
-    "rating": 2.6,
+    "rating": null,
     "distance_km": 2.682,
     "website": null,
     "wikidata": null

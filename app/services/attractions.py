@@ -64,12 +64,18 @@ def estimate_cost(cat: osm.Category, tags: dict, wd: dict | None) -> Cost:
     return Cost(amount_usd=base, source="estimado", label=label)
 
 
-def rating(tags: dict, wd: dict | None) -> float:
+def rating(tags: dict, wd: dict | None) -> float | None:
     """Índice de relevancia de 0 a 5 (OSM no publica calificaciones de usuarios).
 
     Se basa en cuántas Wikipedias tienen un artículo sobre el lugar, si está
     declarado patrimonio y qué tan completa es su ficha en OSM.
+
+    Sin ficha en Wikidata ni artículo en Wikipedia no hay nada que diga qué tan
+    relevante es el lugar: se devuelve None ("sin datos") en vez de inventar un
+    número que parecería una nota baja.
     """
+    if not wd and "wikipedia" not in tags:
+        return None
     score = 2.6
     if wd:
         score += min(1.5, math.log10(1 + wd.get("sitelinks", 0)) * 0.8)

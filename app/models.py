@@ -50,7 +50,7 @@ class Attraction(BaseModel):
     image: Image | None = None
     cost: Cost
     hours: str | None = Field(default=None, max_length=300)
-    rating: float = Field(ge=0, le=5)
+    rating: float | None = Field(default=None, ge=0, le=5)  # None = sin datos para calificar
     distance_km: float = Field(ge=0)
     website: str | None = None
     wikidata: str | None = None

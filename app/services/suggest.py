@@ -65,7 +65,8 @@ CHOOSE_PROMPT = """Elegís lugares para un viajero entre una lista de candidatos
 Reglas:
 - Usá SOLO ids de la lista. Si ningún candidato cumple el pedido, devolvé "picks" vacío.
 - Elegí como máximo la cantidad pedida, priorizando que cumpla el pedido; ante varios
-  que cumplan, el más cercano al hotel y con mejor calificación.
+  que cumplan, el más cercano al hotel y con mejor calificación. "sin datos" en la
+  calificación significa que no se sabe: no es ni buena ni mala, no la menciones.
 - "reason": por qué lo elegiste, en una frase de máximo 20 palabras, en español
   rioplatense. No inventes datos que no estén en el candidato."""
 
@@ -135,7 +136,7 @@ def _default_reason(a: Attraction) -> str:
 def _candidate_card(a: Attraction) -> dict:
     return {
         "id": a.id, "nombre": a.name, "categoria": a.category_label, "descripcion": a.description,
-        "km_del_hotel": round(a.distance_km, 2), "calificacion": a.rating, "horario": a.hours or "sin datos",
+        "km_del_hotel": round(a.distance_km, 2), "calificacion": a.rating if a.rating is not None else "sin datos", "horario": a.hours or "sin datos",
     }
 
 

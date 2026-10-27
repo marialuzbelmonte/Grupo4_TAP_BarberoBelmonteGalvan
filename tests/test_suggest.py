@@ -89,3 +89,8 @@ def test_short_hints_need_the_whole_word():
     assert suggest.fallback_interpretation("un bar para tomar algo")["categories"] == ["bares"]
     assert "bares" not in suggest.fallback_interpretation("algo barato en el barrio")["categories"]
     assert suggest.fallback_interpretation("una cerveza artesanal")["categories"] == ["bares"]
+
+
+def test_unknown_rating_is_sent_to_the_ai_as_sin_datos():
+    card = suggest._candidate_card(attraction("node/7", "Bar X").model_copy(update={"rating": None}))
+    assert card["calificacion"] == "sin datos"

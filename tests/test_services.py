@@ -175,3 +175,11 @@ def test_bars_only_enter_indexed_zones():
     assert osm.classify(bar, exhaustive=True).slug == "bares"  # indexador: sí
     assert '"bar"' not in osm.build_query(-31.25, -61.49, 3000, list(osm.CATEGORIES))
     assert '"amenity"~"^(bar|pub|biergarten)$"' in osm.build_query(-31.25, -61.49, 3000, list(osm.CATEGORIES), exhaustive=True)
+
+
+def test_rating_is_none_without_evidence():
+    # Un horario o un sitio web no dicen nada de qué tan relevante es el lugar.
+    assert attractions.rating({"opening_hours": "Mo-Fr 09:00-18:00", "website": "https://x"}, None) is None
+    assert attractions.rating({"wikipedia": "es:Cabildo"}, None) == 2.8
+    famous = attractions.rating({}, {"sitelinks": 40, "heritage": True})
+    assert famous is not None and famous > 4

@@ -306,6 +306,13 @@ function visibleAttractions() {
   return state.attractions.filter((a) => inCategory(a) && matches(state.query, a.name, a.description, a.category_label));
 }
 
+function ratingHtml(rating) {
+  if (rating == null) {
+    return `<dd class="no-data" title="OpenStreetMap y Wikidata no tienen información para calificar este lugar">Sin datos</dd>`;
+  }
+  return `<dd title="Índice de relevancia calculado con Wikidata y OSM">${fmtRating(rating)} ${stars(rating)}</dd>`;
+}
+
 function stars(rating) {
   const full = Math.round(rating);
   return `<span class="stars" aria-hidden="true">${"★".repeat(full)}<span>${"★".repeat(5 - full)}</span></span>`;
@@ -336,7 +343,7 @@ function cardHtml(a, index) {
     <dl class="card-facts">
       <div><dt>Costo</dt><dd title="${escapeHtml(a.cost.label)}">${costNote}${fmtUsd(a.cost.amount_usd)}</dd></div>
       <div><dt>Horario</dt><dd title="${escapeHtml(a.hours ?? "")}">${escapeHtml(a.hours ?? "Consultar")}</dd></div>
-      <div><dt>Calificación</dt><dd title="Índice de relevancia calculado con Wikidata y OSM">${fmtRating(a.rating)} ${stars(a.rating)}</dd></div>
+      <div><dt>Calificación</dt>${ratingHtml(a.rating)}</div>
     </dl>
     <label class="card-pick">
       <input type="checkbox" ${checked ? "checked" : ""} data-pick="${escapeHtml(a.id)}">
