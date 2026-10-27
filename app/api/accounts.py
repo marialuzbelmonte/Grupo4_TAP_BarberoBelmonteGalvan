@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request, Response
 
 from app.api.deps import current_user, db_pool
 from app.config import settings
-from app.models import Itinerary, LoginRequest, RegisterRequest, SavedItinerary, User
+from app.models import Itinerary, LoginRequest, ProfileUpdate, RegisterRequest, SavedItinerary, User
 from app.services import auth
 
 router = APIRouter()
@@ -68,6 +68,12 @@ async def me(request: Request, pool: asyncpg.Pool = Depends(db_pool)):
     """Usuario de la sesión actual, o null si no hay sesión (no es un error)."""
     user_id = auth.user_id_from_token(request.cookies.get(auth.SESSION_COOKIE))
     return await auth.get_user(pool, user_id) if user_id else None
+
+
+@router.patch("/me", response_model=User)
+async def update_profile(body: ProfileUpdate, user: dict = Depends(current_user), pool: asyncpg.Pool = Depends(db_pool)):
+    """Perfil: nombre y moneda preferida. El email no se cambia desde acá."""
+    return await auth.update_profile(pool, user["id"], body.name, body.currency)
 
 
 # ---------------------------------------------------------------- mis itinerarios

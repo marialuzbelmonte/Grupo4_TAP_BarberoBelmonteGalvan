@@ -16,6 +16,7 @@ from app.services.geo import haversine_km
 log = logging.getLogger(__name__)
 
 NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
+NOMINATIM_REVERSE_URL = "https://nominatim.openstreetmap.org/reverse"
 
 
 @dataclass(frozen=True)
@@ -101,6 +102,24 @@ _nominatim_lock = asyncio.Lock()
 _nominatim_last = 0.0
 
 
+async def _nominatim(session: aiohttp.ClientSession, url: str, params: dict):
+    global _nominatim_last
+    # Política de uso de Nominatim: como máximo 1 pedido por segundo.
+    async with _nominatim_lock:
+        wait = 1.0 - (time.monotonic() - _nominatim_last)
+        if wait > 0:
+            await asyncio.sleep(wait)
+        try:
+            async with session.get(url, params=params) as resp:
+                if resp.status != 200:
+                    raise UpstreamError(f"Nominatim respondió {resp.status}")
+                return await resp.json(content_type=None)
+        except (aiohttp.ClientError, asyncio.TimeoutError) as exc:
+            raise UpstreamError(f"No se pudo consultar Nominatim: {exc}") from exc
+        finally:
+            _nominatim_last = time.monotonic()
+
+
 async def geocode(
     session: aiohttp.ClientSession,
     query: str,
@@ -108,7 +127,6 @@ async def geocode(
     limit: int = 6,
 ) -> list[dict]:
     """Busca lugares por nombre. Con `near`, restringe la búsqueda a esa zona."""
-    global _nominatim_last
     key = (query.lower(), near and (round(near[0], 2), round(near[1], 2)), limit)
     if (cached := _geocode_cache.get(key)) is not None:
         return cached
@@ -118,20 +136,7 @@ async def geocode(
         lat, lon = near
         params |= {"viewbox": f"{lon - 0.25},{lat + 0.25},{lon + 0.25},{lat - 0.25}", "bounded": "1"}
 
-    # Política de uso de Nominatim: como máximo 1 pedido por segundo.
-    async with _nominatim_lock:
-        wait = 1.0 - (time.monotonic() - _nominatim_last)
-        if wait > 0:
-            await asyncio.sleep(wait)
-        try:
-            async with session.get(NOMINATIM_URL, params=params) as resp:
-                if resp.status != 200:
-                    raise UpstreamError(f"Nominatim respondió {resp.status}")
-                data = await resp.json(content_type=None)
-        except (aiohttp.ClientError, asyncio.TimeoutError) as exc:
-            raise UpstreamError(f"No se pudo consultar Nominatim: {exc}") from exc
-        finally:
-            _nominatim_last = time.monotonic()
+    data = await _nominatim(session, NOMINATIM_URL, params)
 
     results = []
     for item in data:
@@ -149,6 +154,30 @@ async def geocode(
         )
     _geocode_cache.set(key, results)
     return results
+
+
+def address_label(item: dict) -> str | None:
+    """Respuesta de Nominatim reverse -> "Calle 123, Ciudad" (lo que sirve para ubicarse)."""
+    address = item.get("address") or {}
+    street = address.get("road") or address.get("pedestrian") or address.get("footway")
+    if street and address.get("house_number"):
+        street = f"{street} {address['house_number']}"
+    city = next((address[k] for k in ("city", "town", "village", "suburb") if address.get(k)), None)
+    parts = [p for p in (street or item.get("name"), city) if p]
+    return ", ".join(parts) or (item.get("display_name") or "").split(",")[0] or None
+
+
+async def reverse(session: aiohttp.ClientSession, lat: float, lon: float) -> str | None:
+    """Coordenadas -> dirección aproximada. None si Nominatim no conoce el lugar."""
+    key = ("reverse", round(lat, 4), round(lon, 4))  # ~10 m: mismo punto, misma respuesta
+    if (cached := _geocode_cache.get(key)) is not None:
+        return cached or None
+    params = {"lat": f"{lat:.6f}", "lon": f"{lon:.6f}", "format": "jsonv2", "zoom": "18",
+              "addressdetails": "1", "accept-language": "es"}
+    data = await _nominatim(session, NOMINATIM_REVERSE_URL, params)
+    label = None if not isinstance(data, dict) or "error" in data else address_label(data)
+    _geocode_cache.set(key, label or "")
+    return label
 
 
 # --------------------------------------------------------------------------- Overpass

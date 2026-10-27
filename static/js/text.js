@@ -32,7 +32,6 @@ const money = new Intl.NumberFormat("es-AR", { minimumFractionDigits: 0, maximum
 
 export const fmtKm = (km) => (km < 1 ? `${Math.round(km * 1000)} m` : `${nf1.format(km)} km`);
 export const fmtUsd = (v) => (v === 0 ? "Gratis" : `US$ ${money.format(v)}`);
-export const fmtUsdStrict = (v) => `US$ ${money.format(v)}`;
 export const fmtRating = (r) => nf1.format(r);
 
 export function escapeHtml(value) {

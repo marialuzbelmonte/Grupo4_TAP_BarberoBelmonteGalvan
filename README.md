@@ -9,7 +9,7 @@ atracciones cercanas desde un *checklist* de tarjetas y el sistema arma un itine
 ## Funcionalidades
 
 - **Destino y hotel**: geocodificación con Nominatim (OSM); el hotel se puede buscar, marcar en el
-  mapa o arrastrar. Las distancias se recalculan al instante (Haversine).
+  mapa, arrastrar o tomar de la **ubicación actual** del navegador (con la dirección aproximada). Las distancias se recalculan al instante (Haversine).
 - **Exploración**: atracciones de OpenStreetMap (Overpass) enriquecidas con Wikidata (descripción,
   tarifa, popularidad) y Wikimedia Commons (foto y créditos). Filtros por categoría y búsqueda de
   texto normalizada (sin tildes, mayúsculas ni espacios de más).
@@ -20,6 +20,10 @@ atracciones cercanas desde un *checklist* de tarjetas y el sistema arma un itine
 - **Cuentas de usuario**: registro e inicio de sesión (contraseñas con Argon2id, sesión con JWT en
   cookie `httpOnly`). Con sesión iniciada se pueden guardar itinerarios y volver a abrirlos o
   descargarlos desde "Mis itinerarios". La app se puede usar igual sin cuenta.
+- **Perfil y moneda**: nombre, email y moneda preferida (pesos argentinos, euros, libras, reales…).
+  Los costos se estiman en dólares y se muestran convertidos con la cotización del día, en pantalla
+  y en el PDF: el peso argentino al **dólar blue** (venta, DolarApi.com, aclarado en un cartel) y el
+  resto de las monedas con ExchangeRate-API. Sin cuenta, los precios se ven en dólares.
 - **Búsqueda full-text en PostgreSQL**: zona de ejemplo **Rafaela, Santa Fe** indexada localmente
   (`tsvector` + índice GIN, español sin tildes, raíces de palabras y ranking por relevancia). En
   Rafaela los lugares salen de la base, sin depender de APIs externas.
@@ -84,9 +88,12 @@ tests/
 | GET | `/api/places/search?zone=&q=&lat=&lon=&radius=` | Búsqueda full-text rankeada en una zona indexada |
 | POST | `/api/suggest` | Pedido abierto: la IA elige lugares reales |
 | POST | `/api/itinerary` | Genera itinerario + presupuesto |
-| POST | `/api/itinerary/pdf` | Devuelve el itinerario en PDF |
+| POST | `/api/itinerary/pdf?currency=` | Devuelve el itinerario en PDF (en la moneda indicada) |
 | POST | `/api/auth/register` · `/api/auth/login` · `/api/auth/logout` | Cuentas y sesión |
 | GET | `/api/auth/me` | Usuario de la sesión (o `null`) |
+| PATCH | `/api/me` | Perfil: nombre y moneda preferida |
+| GET | `/api/rates` | Tipos de cambio desde US$ y monedas disponibles |
+| POST | `/api/reverse` | Coordenadas → dirección (para "Usar mi ubicación") |
 | GET · POST | `/api/me/itineraries` | Listar / guardar itinerarios del usuario |
 | GET · DELETE | `/api/me/itineraries/{id}` | Ver / borrar uno (solo el dueño) |
 
@@ -169,3 +176,4 @@ El `Procfile` queda como alternativa si se usa el builder Nixpacks/Railpack en l
 
 Mapas y lugares © colaboradores de [OpenStreetMap](https://www.openstreetmap.org/copyright) (ODbL).
 Datos de Wikidata (CC0) e imágenes de Wikimedia Commons con la licencia y autoría que indica cada foto.
+Tipos de cambio: [Rates By Exchange Rate API](https://www.exchangerate-api.com) y [DolarApi.com](https://dolarapi.com) (dólar blue).

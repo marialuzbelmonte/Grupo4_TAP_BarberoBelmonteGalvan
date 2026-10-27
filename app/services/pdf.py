@@ -2,6 +2,9 @@
 from __future__ import annotations
 
 import io
+from dataclasses import dataclass
+from datetime import datetime, timedelta, timezone
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -40,12 +43,59 @@ def _register_fonts() -> tuple[str, str]:
     return "Helvetica", "Helvetica-Bold"
 
 
-def _money(value: float) -> str:
-    whole = f"{value:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
-    return f"US$ {whole}"
+SYMBOLS = {"USD": "US$", "ARS": "$", "EUR": "€", "GBP": "£", "BRL": "R$"}
 
 
-def render(itinerary: Itinerary) -> bytes:
+def _number(value: float, decimals: int = 2) -> str:
+    whole = f"{value:,.{decimals}f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    return whole[:-3] if decimals and whole.endswith(",00") else whole
+
+
+@dataclass(frozen=True)
+class Money:
+    """Moneda en la que se muestran los montos (calculados siempre en US$)."""
+    code: str = "USD"
+    rate: float = 1.0  # unidades de `code` por 1 US$
+    updated: str | None = None
+    source: str = "ExchangeRate-API"
+    label: str | None = None  # tipo de cotización, p. ej. "dólar blue (venta)"
+
+    def __call__(self, usd: float) -> str:
+        # Monedas con valores grandes (pesos, yenes...): sin centavos.
+        decimals = 0 if self.rate >= 100 else 2
+        return f"{SYMBOLS.get(self.code, self.code)} {_number(usd * self.rate, decimals)}"
+
+    def note(self) -> str | None:
+        if self.code == "USD":
+            return None
+        # ExchangeRate-API publica a las 00:00 UTC (en hora argentina sería el día anterior);
+        # el blue se informa con la hora de Buenos Aires.
+        day = _date(self.updated, _ARGENTINA if self.label else timezone.utc)
+        when = f", {day:%d/%m/%Y}" if day else ""
+        rate = f"1 US$ = {_number(self.rate)} {self.code} ({self.source}{when})"
+        if self.label:
+            return f"Cotización {self.label}: {rate}. Montos convertidos desde dólares; es una referencia."
+        return f"Montos convertidos de dólares a {self.code}: {rate}. Es una cotización de referencia."
+
+
+_ARGENTINA = timezone(timedelta(hours=-3))  # sin horario de verano
+
+
+def _date(value: str | None, tz: timezone) -> datetime | None:
+    """Fecha de la cotización: ISO 8601 (DolarApi) o RFC 2822 (ExchangeRate-API)."""
+    if not value:
+        return None
+    try:
+        parsed = datetime.fromisoformat(value)
+    except ValueError:
+        try:
+            parsed = parsedate_to_datetime(value)
+        except (TypeError, ValueError):
+            return None
+    return parsed.astimezone(tz) if parsed.tzinfo else parsed
+
+
+def render(itinerary: Itinerary, money: Money = Money()) -> bytes:
     regular, bold = _register_fonts()
     s = {
         "kicker": ParagraphStyle("kicker", fontName=bold, fontSize=8, leading=10, textColor=ACCENT, spaceAfter=4),
@@ -93,7 +143,7 @@ def render(itinerary: Itinerary) -> bytes:
                 Paragraph(stop.time, s["cellb"]),
                 Paragraph(detail, s["cell"]),
                 Paragraph(f"{stop.duration_min} min", s["cell"]),
-                Paragraph(_money(stop.cost_usd), s["right"]),
+                Paragraph(money(stop.cost_usd), s["right"]),
             ])
         if not day.stops:
             rows.append(["", p("Día libre", "cell"), "", ""])
@@ -101,7 +151,7 @@ def render(itinerary: Itinerary) -> bytes:
         table.setStyle(TableStyle(header_style + [("ALIGN", (3, 0), (3, 0), "RIGHT")]))
         story.append(KeepTogether([
             p(f"Día {day.day} — {day.theme}", "day"),
-            p(f"{len(day.stops)} paradas · {f'{day.distance_km:.1f}'.replace('.', ',')} km de recorrido · subtotal {_money(day.subtotal_usd)} p/p", "muted"),
+            p(f"{len(day.stops)} paradas · {f'{day.distance_km:.1f}'.replace('.', ',')} km de recorrido · subtotal {money(day.subtotal_usd)} p/p", "muted"),
             Spacer(1, 2 * mm),
             table,
         ]))
@@ -112,12 +162,12 @@ def render(itinerary: Itinerary) -> bytes:
         rows.append([
             str(r.day),
             Paragraph(escape(r.name), s["cell"]),
-            Paragraph(_money(r.unit_usd), s["right"]),
+            Paragraph(money(r.unit_usd), s["right"]),
             Paragraph(str(r.travelers), s["right"]),
-            Paragraph(_money(r.total_usd), s["right"]),
+            Paragraph(money(r.total_usd), s["right"]),
         ])
     rows.append(["", Paragraph("<b>Total estimado</b>", s["cell"]), "", "",
-                 Paragraph(f"<b>{_money(budget.total_usd)}</b>", s["right"])])
+                 Paragraph(f"<b>{money(budget.total_usd)}</b>", s["right"])])
     table = Table(rows, colWidths=[12 * mm, 92 * mm, 24 * mm, 20 * mm, 26 * mm], repeatRows=1)
     table.setStyle(TableStyle(header_style + [
         ("LINEABOVE", (0, -1), (-1, -1), 0.8, INK),
@@ -127,6 +177,8 @@ def render(itinerary: Itinerary) -> bytes:
         ("ALIGN", (2, 0), (-1, 0), "RIGHT"),
     ]))
     story += [Spacer(1, 6 * mm), p("Presupuesto", "day"), table, Spacer(1, 4 * mm), p(budget.note, "note")]
+    if money.note():
+        story += [Spacer(1, 2 * mm), p(money.note(), "cellb" if money.label else "muted")]
 
     if itinerary.tips:
         story += [Spacer(1, 4 * mm), p("Consejos", "day")]

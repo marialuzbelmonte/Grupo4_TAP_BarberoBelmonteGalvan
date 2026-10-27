@@ -25,6 +25,8 @@ CREATE TABLE IF NOT EXISTS users (
     created_at    TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 CREATE UNIQUE INDEX IF NOT EXISTS users_email_key ON users (lower(email));
+-- Perfil: moneda en la que el usuario ve los precios (se guardan siempre en US$).
+ALTER TABLE users ADD COLUMN IF NOT EXISTS currency TEXT NOT NULL DEFAULT 'USD';
 
 CREATE TABLE IF NOT EXISTS itineraries (
     id          BIGSERIAL PRIMARY KEY,

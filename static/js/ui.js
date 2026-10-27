@@ -59,8 +59,8 @@ export function busy(button, isBusy, label) {
   }
 }
 
-export async function downloadPdf(itinerary) {
-  const res = await api("/itinerary/pdf", { method: "POST", body: JSON.stringify(itinerary) });
+export async function downloadPdf(itinerary, currency = "USD") {
+  const res = await api(`/itinerary/pdf?currency=${currency}`, { method: "POST", body: JSON.stringify(itinerary) });
   const url = URL.createObjectURL(await res.blob());
   const match = /filename="([^"]+)"/.exec(res.headers.get("Content-Disposition") ?? "");
   const link = Object.assign(document.createElement("a"), { href: url, download: match ? match[1] : "itinerario.pdf" });

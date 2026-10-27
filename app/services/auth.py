@@ -56,14 +56,17 @@ def user_id_from_token(token: str | None) -> int | None:
         return None
 
 
+_PUBLIC = "id, email, name, currency"  # columnas que se devuelven al cliente
+
+
 def _public(row: asyncpg.Record) -> dict:
-    return {"id": row["id"], "email": row["email"], "name": row["name"]}
+    return {"id": row["id"], "email": row["email"], "name": row["name"], "currency": row["currency"]}
 
 
 async def register(pool: asyncpg.Pool, email: str, name: str, password: str) -> dict:
     try:
         row = await pool.fetchrow(
-            "INSERT INTO users (email, name, password_hash) VALUES ($1, $2, $3) RETURNING id, email, name",
+            f"INSERT INTO users (email, name, password_hash) VALUES ($1, $2, $3) RETURNING {_PUBLIC}",
             email.strip(), name.strip(), hash_password(password),
         )
     except asyncpg.UniqueViolationError as exc:
@@ -73,7 +76,7 @@ async def register(pool: asyncpg.Pool, email: str, name: str, password: str) -> 
 
 async def authenticate(pool: asyncpg.Pool, email: str, password: str) -> dict | None:
     row = await pool.fetchrow(
-        "SELECT id, email, name, password_hash FROM users WHERE lower(email) = lower($1)", email.strip()
+        f"SELECT {_PUBLIC}, password_hash FROM users WHERE lower(email) = lower($1)", email.strip()
     )
     if row is None:
         verify_password(_DUMMY_HASH, password)  # mismo tiempo de respuesta que con un email real
@@ -86,7 +89,17 @@ async def authenticate(pool: asyncpg.Pool, email: str, password: str) -> dict | 
 
 
 async def get_user(pool: asyncpg.Pool, user_id: int) -> dict | None:
-    row = await pool.fetchrow("SELECT id, email, name FROM users WHERE id = $1", user_id)
+    row = await pool.fetchrow(f"SELECT {_PUBLIC} FROM users WHERE id = $1", user_id)
+    return _public(row) if row else None
+
+
+async def update_profile(pool: asyncpg.Pool, user_id: int, name: str | None, currency: str | None) -> dict | None:
+    # COALESCE: un campo que no se manda queda como estaba.
+    row = await pool.fetchrow(
+        f"""UPDATE users SET name = COALESCE($2, name), currency = COALESCE($3, currency)
+            WHERE id = $1 RETURNING {_PUBLIC}""",
+        user_id, name, currency,
+    )
     return _public(row) if row else None
 
 

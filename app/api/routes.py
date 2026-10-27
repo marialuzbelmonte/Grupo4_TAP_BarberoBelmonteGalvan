@@ -17,10 +17,11 @@ from app.models import (
     GeocodeResult,
     Itinerary,
     ItineraryRequest,
+    ReverseRequest,
     SuggestRequest,
     SuggestResponse,
 )
-from app.services import attractions, itinerary, osm, pdf, places, suggest, text
+from app.services import attractions, currency, itinerary, osm, pdf, places, suggest, text
 
 router = APIRouter()
 
@@ -53,6 +54,25 @@ async def geocode(
         return await osm.geocode(session, q.strip(), near=near)
     except osm.UpstreamError as exc:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
+
+
+@router.post("/reverse")
+async def reverse_geocode(body: ReverseRequest, session: aiohttp.ClientSession = Depends(http_session)) -> dict:
+    """Ubicación del navegador -> dirección. Va por POST para que las coordenadas
+    del usuario no queden en los logs de acceso (que registran la URL)."""
+    try:
+        return {"label": await osm.reverse(session, body.lat, body.lon)}
+    except osm.UpstreamError:
+        return {"label": None}  # sin dirección igual se puede usar el punto
+
+
+@router.get("/rates")
+async def exchange_rates(session: aiohttp.ClientSession = Depends(http_session)) -> dict:
+    try:
+        data = await currency.get_rates(session)
+    except currency.RatesUnavailable as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
+    return {**data, "currencies": [{"code": c, "name": n} for c, n in currency.CURRENCIES.items()]}
 
 
 @router.get("/attractions", response_model=AttractionsResponse)
@@ -124,8 +144,22 @@ async def create_itinerary(req: ItineraryRequest, session: aiohttp.ClientSession
 
 
 @router.post("/itinerary/pdf")
-async def export_pdf(data: Itinerary) -> Response:
-    content = pdf.render(data)
+async def export_pdf(
+    data: Itinerary,
+    currency_code: str = Query(default="USD", alias="currency", pattern="^[A-Za-z]{3}$"),
+    session: aiohttp.ClientSession = Depends(http_session),
+) -> Response:
+    code, money = currency_code.upper(), pdf.Money()
+    if code != "USD" and code in currency.CURRENCIES:
+        try:
+            rates = await currency.get_rates(session)
+        except currency.RatesUnavailable:
+            rates = None  # sin cotización, el PDF sale en dólares
+        if rates and code in rates["rates"]:
+            ars = rates["ars"] if code == "ARS" else None  # el peso va al dólar blue
+            origin = ars or rates
+            money = pdf.Money(code, rates["rates"][code], origin["updated"], origin["source"], ars and ars["label"])
+    content = pdf.render(data, money)
     filename = re.sub(r"[^a-z0-9]+", "-", text.normalize(data.destination)).strip("-") or "destino"
     return Response(
         content=content,

@@ -218,6 +218,9 @@ a { color: var(--stamp); text-underline-offset: 2px; }
 .chosen .mono { color: var(--muted); }
 
 .hotel-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 14px; }
+.btn-locate { display: inline-flex; align-items: center; gap: 8px; }
+.btn-locate svg { width: 16px; height: 16px; flex: none; }
+.btn-locate[aria-busy="true"] svg { animation: spin 1.4s linear infinite; }
 .field-inline { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-2); margin-left: auto; }
 
 /* ------------------------------------------------------------------ explorar */
@@ -471,6 +474,20 @@ a { color: var(--stamp); text-underline-offset: 2px; }
   background: rgba(200, 69, 43, 0.06);
 }
 
+.fx-note {
+  margin: 0 0 16px; padding: 10px 14px;
+  font-size: 13px; line-height: 1.45; color: var(--ink-2);
+  background: var(--paper-2); border-left: 3px solid var(--sea); border-radius: 2px;
+}
+.fx-note strong {
+  display: inline-block; margin-right: 6px; padding: 2px 7px;
+  font: 600 10.5px/1.4 var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--paper); background: var(--sea); border-radius: 2px;
+}
+.fx-note.is-blue { border-left-color: #2E5C8A; background: rgba(46, 92, 138, 0.08); }
+.fx-note.is-blue strong { background: #2E5C8A; }
+#fxBanner .fx-note { margin-top: 4px; }
+
 .itin-loading { display: flex; align-items: center; gap: 14px; padding: 24px 0; color: var(--muted); }
 .itin-loading span { width: 28px; height: 28px; border: 2.5px solid var(--rule); border-top-color: var(--stamp); border-radius: 50%; animation: spin 0.8s linear infinite; }
 
@@ -503,8 +520,19 @@ a { color: var(--stamp); text-underline-offset: 2px; }
   display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%;
   background: var(--ochre); color: var(--ink); font: 800 13px/1 var(--font-display);
 }
-.account-link { font: 500 13px/1 var(--font-body); color: #c9c2b4; background: none; border: 0; cursor: pointer; padding: 6px; text-decoration: underline; text-underline-offset: 3px; }
-.account-link:hover { color: var(--paper); }
+.account-cur {
+  padding: 3px 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--ochre); border: 1px solid rgba(217, 164, 65, 0.55); border-radius: 3px;
+}
+.profile-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 6px; padding-top: 14px; border-top: 1px solid var(--rule); }
+.account-logout {
+  padding: 6px 0;
+  font: 500 13.5px/1 var(--font-body); color: var(--muted);
+  background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+}
+.account-logout:hover { color: var(--stamp); }
+.auth-form .select { width: 100%; }
+.input[readonly] { background: var(--paper-2); color: var(--ink-2); }
 
 /* ------------------------------------------------------------------ diálogos */
 
@@ -626,13 +654,19 @@ a { color: var(--stamp); text-underline-offset: 2px; }
   .step-num { font-size: 34px; }
   .field-inline { margin-left: 0; }
   .grid { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
-  .account-name, .account-link { display: none; }
+  .account-name { display: none; }
   .account-btn { padding: 0 6px; }
+  .account-saved { padding: 0 12px; }
   .day-head { grid-template-columns: auto 1fr; }
   .day-head p { grid-column: 1 / -1; white-space: normal; }
 }
 
 @media (max-width: 560px) {
+  /* Solo el avatar: los itinerarios guardados se abren desde el perfil. */
+  .account-saved, .account-cur { display: none; }
+  .masthead { gap: 10px; }
+  .brand-name { font-size: 22px; }
+  .progress li { padding: 6px 5px; }
   body.has-tray { --tray-h: 124px; }
   .tray { height: auto; flex-wrap: wrap; gap: 10px 16px; padding: 12px 16px; }
   .tray-fields { margin-left: auto; }

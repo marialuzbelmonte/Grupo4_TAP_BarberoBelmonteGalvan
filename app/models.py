@@ -4,7 +4,9 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Literal
 
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, field_validator
+
+from app.services.currency import CURRENCIES
 
 BUDGET_NOTE = (
     "Nota: Este presupuesto incluye únicamente las estimaciones de las atracciones. "
@@ -142,6 +144,31 @@ class User(BaseModel):
     id: int
     email: str
     name: str
+    currency: str = "USD"  # moneda en la que ve los precios (ISO 4217)
+
+
+class ProfileUpdate(BaseModel):
+    name: str | None = Field(default=None, min_length=1, max_length=80)
+    currency: str | None = None
+
+    @field_validator("name")
+    @classmethod
+    def _strip(cls, value: str | None) -> str | None:
+        if value is not None and not value.strip():
+            raise ValueError("El nombre no puede quedar vacío.")
+        return value.strip() if value else value
+
+    @field_validator("currency")
+    @classmethod
+    def _known_currency(cls, value: str | None) -> str | None:
+        if value is not None and value.upper() not in CURRENCIES:
+            raise ValueError("Moneda no disponible.")
+        return value.upper() if value else value
+
+
+class ReverseRequest(BaseModel):
+    lat: float = Field(ge=-90, le=90)
+    lon: float = Field(ge=-180, le=180)
 
 
 class SavedItinerary(BaseModel):

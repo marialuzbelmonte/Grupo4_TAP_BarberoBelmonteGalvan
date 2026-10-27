@@ -69,7 +69,7 @@
           <span class="step-num" aria-hidden="true">02</span>
           <div>
             <h2 id="h-hotel">Tu base</h2>
-            <p class="step-lede">Buscá tu hotel o marcalo en el mapa. Todas las distancias se miden desde ahí; podés arrastrar el pin.</p>
+            <p class="step-lede">Buscá tu hotel, marcalo en el mapa o usá tu ubicación actual. Todas las distancias se miden desde ahí; podés arrastrar el pin.</p>
           </div>
         </header>
         <form class="search-form" id="hotelForm" role="search" autocomplete="off">
@@ -81,6 +81,10 @@
           <ul class="results" id="hotelResults" aria-label="Resultados de hotel"></ul>
         </form>
         <div class="hotel-actions">
+          <button class="btn btn-line btn-locate" type="button" id="useLocation">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="10" r="2.4" fill="currentColor"/><path d="M10 1v3M10 16v3M1 10h3M16 10h3" stroke="currentColor" stroke-width="1.6"/></svg>
+            Usar mi ubicación
+          </button>
           <button class="btn btn-line" type="button" id="pickOnMap" aria-pressed="false">Marcar en el mapa</button>
           <button class="btn btn-line" type="button" id="useCenter">Usar el centro del destino</button>
           <label class="field-inline" for="radius">
@@ -123,6 +127,7 @@
           <div class="chips" id="chips" role="group" aria-label="Categorías"></div>
         </div>
         <div class="explore-meta" id="exploreMeta" aria-live="polite"></div>
+        <div id="fxBanner"></div>
         <button class="btn btn-line btn-small" type="button" id="refreshHere" hidden>Buscar alrededor de la nueva ubicación del hotel</button>
         <div class="grid" id="grid"></div>
       </section>
@@ -202,6 +207,30 @@
       <p class="kicker">Tu cuaderno</p>
       <h2 id="savedTitle">Mis itinerarios</h2>
       <ul class="saved-list" id="savedList"></ul>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="profileDialog" aria-labelledby="profileTitle">
+    <div class="modal-body">
+      <form method="dialog"><button class="modal-x" aria-label="Cerrar">×</button></form>
+      <p class="kicker">Tu cuaderno</p>
+      <h2 id="profileTitle">Perfil</h2>
+      <form class="auth-form" id="profileForm">
+        <label class="field-label" for="profileName">Nombre</label>
+        <input class="input" id="profileName" type="text" autocomplete="given-name" maxlength="80" required>
+        <label class="field-label" for="profileEmail">Email</label>
+        <input class="input" id="profileEmail" type="email" readonly aria-describedby="emailHint">
+        <p class="field-hint" id="emailHint">Es tu usuario para ingresar: no se puede cambiar.</p>
+        <label class="field-label" for="profileCurrency">Moneda para ver los precios</label>
+        <select class="select" id="profileCurrency" aria-describedby="currencyHint"></select>
+        <p class="field-hint" id="currencyHint"></p>
+        <p class="form-error" id="profileError" role="alert"></p>
+        <button class="btn btn-stamp" type="submit">Guardar cambios</button>
+      </form>
+      <div class="profile-foot">
+        <button class="btn btn-line btn-small" type="button" id="profileSaved">Ver mis itinerarios</button>
+        <button class="account-logout" type="button" id="logout">Cerrar sesión</button>
+      </div>
     </div>
   </dialog>
 

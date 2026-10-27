@@ -1,7 +1,8 @@
 // Controlador del cliente: estado de la interfaz, eventos y llamadas REST.
 import { initAccount, saveItinerary } from "./account.js";
 import { CATEGORY_STYLE, DAY_COLORS, MapView } from "./map.js";
-import { escapeHtml, fmtKm, fmtRating, fmtUsd, fmtUsdStrict, haversineKm, matches } from "./text.js";
+import { exchangeNoteHtml, fmtMoney, fmtPrice, money, onCurrencyChange } from "./money.js";
+import { escapeHtml, fmtKm, fmtRating, fmtUsd, haversineKm, matches } from "./text.js";
 import { $, api, busy, downloadPdf, toast } from "./ui.js";
 
 const state = {
@@ -118,6 +119,54 @@ $("#useCenter").addEventListener("click", () => {
 });
 
 $("#pickOnMap").addEventListener("click", () => setPicking(!state.picking));
+
+$("#useLocation").addEventListener("click", useMyLocation);
+
+function currentPosition() {
+  return new Promise((resolve, reject) =>
+    navigator.geolocation.getCurrentPosition(resolve, reject, { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 }),
+  );
+}
+
+function locationError(err) {
+  if (!window.isSecureContext) return "El navegador solo comparte la ubicación en páginas seguras (https).";
+  if (err.code === 1) return "No diste permiso para usar tu ubicación. Podés habilitarlo desde el candado de la barra de direcciones.";
+  if (err.code === 3) return "Tardó demasiado en encontrar tu ubicación. Probá de nuevo o marcala en el mapa.";
+  return "No pudimos obtener tu ubicación. Probá marcarla en el mapa.";
+}
+
+// La ubicación del navegador como base. La dirección se pide por POST (ver /api/reverse).
+async function useMyLocation(e) {
+  const button = e.currentTarget;
+  if (!state.destination) return;
+  if (!navigator.geolocation) {
+    toast("Tu navegador no permite compartir la ubicación.", "error");
+    return;
+  }
+  // busy() reemplaza el texto y borraría el ícono: acá solo se deshabilita.
+  button.disabled = true;
+  button.setAttribute("aria-busy", "true");
+  try {
+    const { coords } = await currentPosition();
+    const point = { lat: coords.latitude, lon: coords.longitude };
+    let label = null;
+    try {
+      ({ label } = await (await api("/reverse", { method: "POST", body: JSON.stringify(point) })).json());
+    } catch { /* sin dirección igual sirve el punto */ }
+    setHotel({ name: label ? `Mi ubicación · ${label}` : "Mi ubicación actual", ...point });
+    const km = haversineKm(state.destination, point);
+    if (km > 30) {
+      toast(`Estás a ${fmtKm(km)} de ${state.destination.name}: las atracciones se buscan alrededor de tu ubicación.`);
+    } else if (coords.accuracy > 300) {
+      toast(`Ubicación aproximada (±${fmtKm(coords.accuracy / 1000)}). Si hace falta, arrastrá el pin.`);
+    }
+  } catch (err) {
+    toast(locationError(err), "error");
+  } finally {
+    button.disabled = false;
+    button.removeAttribute("aria-busy");
+  }
+}
 
 function setPicking(active) {
   state.picking = active;
@@ -318,6 +367,10 @@ function stars(rating) {
   return `<span class="stars" aria-hidden="true">${"★".repeat(full)}<span>${"★".repeat(5 - full)}</span></span>`;
 }
 
+// En otra moneda, el valor original en dólares queda a mano en el tooltip.
+const costTitle = (cost) =>
+  money.code === "USD" || cost.amount_usd === 0 ? cost.label : `${cost.label} · ${fmtUsd(cost.amount_usd)}`;
+
 function cardHtml(a, index) {
   const style = CATEGORY_STYLE[a.category] ?? { glyph: "•", color: "#1D2A33" };
   const checked = state.selected.has(a.id);
@@ -341,7 +394,7 @@ function cardHtml(a, index) {
       <p class="card-desc">${escapeHtml(a.description)}</p>
     </div>
     <dl class="card-facts">
-      <div><dt>Costo</dt><dd title="${escapeHtml(a.cost.label)}">${costNote}${fmtUsd(a.cost.amount_usd)}</dd></div>
+      <div><dt>Costo</dt><dd title="${escapeHtml(costTitle(a.cost))}">${costNote}${fmtPrice(a.cost.amount_usd)}</dd></div>
       <div><dt>Horario</dt><dd title="${escapeHtml(a.hours ?? "")}">${escapeHtml(a.hours ?? "Consultar")}</dd></div>
       <div><dt>Calificación</dt>${ratingHtml(a.rating)}</div>
     </dl>
@@ -538,7 +591,7 @@ function renderItinerary(it) {
             <time class="stop-time mono">${escapeHtml(s.time)}</time>
             <div class="stop-body">
               <p class="stop-name"><span class="stop-idx">${day.day}·${j + 1}</span> ${escapeHtml(s.name)}</p>
-              <p class="stop-meta mono">${escapeHtml(s.category_label)} · ${s.duration_min} min · ${j === 0 ? "desde el hotel" : "desde la anterior"} ${fmtKm(s.from_prev_km)} · ${fmtUsd(s.cost_usd)}</p>
+              <p class="stop-meta mono">${escapeHtml(s.category_label)} · ${s.duration_min} min · ${j === 0 ? "desde el hotel" : "desde la anterior"} ${fmtKm(s.from_prev_km)} · ${fmtPrice(s.cost_usd)}</p>
               ${s.tip ? `<p class="stop-tip">${escapeHtml(s.tip)}</p>` : ""}
             </div>
           </li>`,
@@ -550,7 +603,7 @@ function renderItinerary(it) {
         <header class="day-head">
           <span class="day-num">Día ${day.day}</span>
           <h3>${escapeHtml(day.theme)}</h3>
-          <p class="mono">${day.stops.length} paradas · ${fmtKm(day.distance_km)} · ${fmtUsdStrict(day.subtotal_usd)} p/p</p>
+          <p class="mono">${day.stops.length} paradas · ${fmtKm(day.distance_km)} · ${fmtMoney(day.subtotal_usd)} p/p</p>
         </header>
         <ol class="stops">${stops}</ol>
       </article>`;
@@ -562,9 +615,9 @@ function renderItinerary(it) {
       (r) => `<tr>
         <td class="mono">${r.day}</td>
         <th scope="row">${escapeHtml(r.name)}<span class="src src-${r.source}">${r.source === "estimado" ? "estimado" : r.source === "wikidata" ? "Wikidata" : "OSM"}</span></th>
-        <td class="num">${fmtUsdStrict(r.unit_usd)}</td>
+        <td class="num">${fmtMoney(r.unit_usd)}</td>
         <td class="num">${r.travelers}</td>
-        <td class="num">${fmtUsdStrict(r.total_usd)}</td>
+        <td class="num">${fmtMoney(r.total_usd)}</td>
       </tr>`,
     )
     .join("");
@@ -589,10 +642,11 @@ function renderItinerary(it) {
         <table>
           <thead><tr><th scope="col">Día</th><th scope="col">Atracción</th><th scope="col" class="num">Unitario</th><th scope="col" class="num">Personas</th><th scope="col" class="num">Total</th></tr></thead>
           <tbody>${rows}</tbody>
-          <tfoot><tr><td></td><th scope="row">Total estimado</th><td></td><td></td><td class="num">${fmtUsdStrict(it.budget.total_usd)}</td></tr></tfoot>
+          <tfoot><tr><td></td><th scope="row">Total estimado</th><td></td><td></td><td class="num">${fmtMoney(it.budget.total_usd)}</td></tr></tfoot>
         </table>
       </div>
       <p class="budget-note">${escapeHtml(it.budget.note)}</p>
+      ${exchangeNoteHtml()}
       <div class="itin-actions">
         <button class="btn btn-stamp" type="button" id="exportPdf">Exportar a PDF</button>
         <button class="btn btn-line" type="button" id="saveItin">Guardar en mis itinerarios</button>
@@ -606,7 +660,7 @@ async function exportPdf(e) {
   const button = e.currentTarget;
   busy(button, true, "Generando PDF…");
   try {
-    await downloadPdf(state.itinerary);
+    await downloadPdf(state.itinerary, money.code);
   } catch (err) {
     toast(`No se pudo exportar: ${err.message}`, "error");
   } finally {
@@ -627,6 +681,20 @@ function showSavedItinerary(it) {
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && state.picking) setPicking(false);
+});
+// Cambió la moneda del perfil: se vuelven a dibujar los precios.
+function renderFxBanner() {
+  $("#fxBanner").innerHTML = exchangeNoteHtml();
+}
+
+onCurrencyChange(() => {
+  renderFxBanner();
+  if (state.attractions.length) renderGrid();
+  if (state.itinerary) {
+    const saved = $("#saveItin")?.textContent; // conserva el "Guardado ✓"
+    renderItinerary(state.itinerary);
+    if (saved) $("#saveItin").textContent = saved;
+  }
 });
 loadCategories();
 initAccount({ openItinerary: showSavedItinerary });
