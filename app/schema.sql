@@ -45,6 +45,8 @@ CREATE TABLE IF NOT EXISTS zones (
     radius_m   INTEGER          NOT NULL,
     indexed_at TIMESTAMPTZ      NOT NULL DEFAULT now()
 );
+-- Huella del archivo data/<zona>.json cargado: si el archivo cambia, se recarga la zona.
+ALTER TABLE zones ADD COLUMN IF NOT EXISTS seed_hash TEXT;
 
 CREATE TABLE IF NOT EXISTS places (
     id       TEXT PRIMARY KEY,  -- id de OSM, p. ej. "node/123"

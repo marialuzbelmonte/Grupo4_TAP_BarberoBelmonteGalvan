@@ -27,6 +27,9 @@ class Category:
     visit_minutes: int
     require_wikidata: bool = False
     max_items: int = 18
+    # Solo en zonas indexadas: en la búsqueda en vivo de una ciudad grande serían cientos
+    # y empujarían fuera del tope de Overpass a museos o monumentos.
+    index_only: bool = False
 
 
 CATEGORIES: dict[str, Category] = {
@@ -49,6 +52,7 @@ CATEGORIES: dict[str, Category] = {
         ),
         Category("parques", "Parques", (("leisure", ("park", "garden", "nature_reserve")),), 0.0, 60),
         Category("cultura", "Cultura", (("amenity", ("theatre", "cinema", "arts_centre")),), 10.0, 120, max_items=10),
+        Category("bares", "Bares", (("amenity", ("bar", "pub", "biergarten")),), 12.0, 90, max_items=20, index_only=True),
         Category("templos", "Templos", (("amenity", ("place_of_worship",)),), 0.0, 30, require_wikidata=True),
         Category("restaurantes", "Restaurantes", (("amenity", ("restaurant", "fast_food")),), 20.0, 75, max_items=14),
         Category("cafes", "Cafés", (("amenity", ("cafe", "ice_cream")),), 7.0, 40, max_items=12),
@@ -176,6 +180,8 @@ def build_query(lat: float, lon: float, radius_m: int, slugs: list[str], exhaust
     stmts = []
     for slug in slugs:
         cat = CATEGORIES[slug]
+        if cat.index_only and not exhaustive:
+            continue
         extra = '["wikidata"]' if cat.require_wikidata and not exhaustive else ""
         stmts += [f'nwr{_tag_filter(k, v)}["name"]{extra};' for k, v in cat.rules]
     return (
@@ -186,6 +192,8 @@ def build_query(lat: float, lon: float, radius_m: int, slugs: list[str], exhaust
 
 def classify(tags: dict, exhaustive: bool = False) -> Category | None:
     for cat in CATEGORIES.values():
+        if cat.index_only and not exhaustive:
+            continue
         if cat.require_wikidata and not exhaustive and "wikidata" not in tags:
             continue
         if any(tags.get(key) in values for key, values in cat.rules):

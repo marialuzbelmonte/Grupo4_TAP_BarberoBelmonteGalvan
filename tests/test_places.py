@@ -103,3 +103,28 @@ def test_attractions_endpoint_uses_index_for_rafaela(database):
 
         hits = client.get("/api/places/search", params={"zone": "rafaela", "q": "pizzería", **RAFAELA}).json()
         assert hits["tsquery"] == "pizzeria:*" and hits["results"]
+
+
+def test_zone_reloads_when_seed_file_changes(database):
+    async def check(pool):
+        async with pool.acquire() as conn:
+            await conn.execute("UPDATE zones SET seed_hash = 'viejo' WHERE slug = 'rafaela'")
+            await conn.execute("DELETE FROM places WHERE zone = 'rafaela' AND category = 'bares'")
+            from app import db
+            await db.load_seeds(conn)  # el hash no coincide: recarga desde data/rafaela.json
+            bars = await conn.fetchval("SELECT count(*) FROM places WHERE zone = 'rafaela' AND category = 'bares'")
+            before = await conn.fetchval("SELECT indexed_at FROM zones WHERE slug = 'rafaela'")
+            await db.load_seeds(conn)  # mismo archivo: no hace nada
+            after = await conn.fetchval("SELECT indexed_at FROM zones WHERE slug = 'rafaela'")
+        return bars, before == after
+
+    bars, unchanged = run(_with_pool(database, check))
+    assert bars > 0 and unchanged
+
+
+def test_bars_are_searchable(database):
+    async def check(pool):
+        return [a.name for a, _ in await places.search(pool, "rafaela", "cerveza", RAFAELA["lat"], RAFAELA["lon"], 6000)]
+
+    found = run(_with_pool(database, check))
+    assert "Pinta Bar" in found and "Luck Beer Bar" in found

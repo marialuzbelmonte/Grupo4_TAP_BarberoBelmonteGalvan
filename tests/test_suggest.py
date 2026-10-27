@@ -83,3 +83,9 @@ def test_garbled_reason_is_replaced(monkeypatch):
     fake_pipeline(monkeypatch, [INTENT, {"picks": [{"id": "node/1", "reason": "la mejor calificaci%n"}]}])
     reason = asyncio.run(suggest.suggest(None, None, REQUEST)).suggestions[0].reason
     assert "%" not in reason and "coincide con tu pedido" in reason
+
+
+def test_short_hints_need_the_whole_word():
+    assert suggest.fallback_interpretation("un bar para tomar algo")["categories"] == ["bares"]
+    assert "bares" not in suggest.fallback_interpretation("algo barato en el barrio")["categories"]
+    assert suggest.fallback_interpretation("una cerveza artesanal")["categories"] == ["bares"]

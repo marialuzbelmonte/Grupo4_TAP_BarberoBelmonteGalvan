@@ -44,6 +44,10 @@ def keywords_for(tags: dict) -> str:
         words.append("vegano")
     if tags.get("amenity") == "fast_food":
         words.append("comida rápida")
+    if tags.get("amenity") in {"bar", "pub", "biergarten"}:
+        words.append("bar tragos cerveza cervecería birra")
+    if tags.get("microbrewery") == "yes" or "brewery" in tags:
+        words.append("cerveza artesanal")
     if tags.get("outdoor_seating") == "yes":
         words.append("mesas afuera al aire libre")
     return " ".join(w for w in words if w)

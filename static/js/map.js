@@ -12,6 +12,7 @@ export const CATEGORY_STYLE = {
   restaurantes: { glyph: "R", color: "#2F5D62" },
   cafes: { glyph: "C", color: "#7D5510" },
   cultura: { glyph: "E", color: "#7A3B55" },
+  bares: { glyph: "B", color: "#4A4E57" },
 };
 
 export const DAY_COLORS = ["#B03A22", "#2F5D62", "#6B4E71", "#7D5510", "#56702F", "#3E5C8A", "#8A5A2B"];

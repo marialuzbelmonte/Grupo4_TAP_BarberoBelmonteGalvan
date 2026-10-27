@@ -394,7 +394,7 @@
     "website": null,
     "wikidata": null
    },
-   "keywords": "pizza pizza pizzería regional regional típica thai asian burger hamburguesas hamburguesería greek vegetariano"
+   "keywords": "pizza pizza pizzería regional regional típica thai asian burger hamburguesas hamburguesería greek vegetariano cerveza artesanal"
   },
   {
    "attraction": {
@@ -563,6 +563,660 @@
     "wikidata": null
    },
    "keywords": ""
+  },
+  {
+   "attraction": {
+    "id": "node/10080572454",
+    "name": "Bacan Bar",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2540986,
+    "lon": -61.4886297,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.8,
+    "distance_km": 0.328,
+    "website": "https://es-la.facebook.com/Bacanbar/",
+    "wikidata": null
+   },
+   "keywords": "pizza pizza pizzería sandwich sándwiches regional regional típica bar tragos cerveza cervecería birra mesas afuera al aire libre"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572459",
+    "name": "Tio pope Bar",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.250486,
+    "lon": -61.4754167,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.556,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "pizza pizza pizzería burger hamburguesas hamburguesería regional regional típica sandwich sándwiches bar tragos cerveza cervecería birra cerveza artesanal mesas afuera al aire libre"
+  },
+  {
+   "attraction": {
+    "id": "node/10080455133",
+    "name": "Barking dog bar",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2540434,
+    "lon": -61.4885869,
+    "description": "Bar en la zona",
+    "image": {
+     "url": "https://rafaelanoticias.com/privados/subidas/fotos/2018/01/ae42534fd41a34dbaa6fa11bbc58d507.jpg",
+     "credit": null,
+     "license": null,
+     "page": null
+    },
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.8,
+    "distance_km": 0.328,
+    "website": "https://es-la.facebook.com/barkingdog.bar/",
+    "wikidata": null
+   },
+   "keywords": "regional regional típica bar tragos cerveza cervecería birra cerveza artesanal mesas afuera al aire libre"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572470",
+    "name": "Rubik Resto Bar",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.251912,
+    "lon": -61.4948049,
+    "description": "Bar en la zona",
+    "image": {
+     "url": "https://10619-2.s.cdn12.com/rests/original/101_510626630.jpg",
+     "credit": null,
+     "license": null,
+     "page": null
+    },
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": "Abierto 24 h",
+    "rating": 2.9,
+    "distance_km": 0.314,
+    "website": "https://es.restaurantguru.com/Rubik-Resto-Bar-Rafaela",
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra cerveza artesanal mesas afuera al aire libre"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572462",
+    "name": "Tio Pope Bar",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2504561,
+    "lon": -61.4751662,
+    "description": "Bar en la zona",
+    "image": {
+     "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH3K_GXThMMywGldZIxstAHXfLq5UV54uwxu5hzXCxyXosQDPQqx3NQEP2ia6cbdia720&usqp=CAU",
+     "credit": null,
+     "license": null,
+     "page": null
+    },
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.58,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra cerveza artesanal mesas afuera al aire libre"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572474",
+    "name": "La mula bar",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2484869,
+    "lon": -61.4952579,
+    "description": "Bar en la zona",
+    "image": {
+     "url": "https://ultimas24.com/download/multimedia.normal.96156f52ec4379d9.6c61206d756c615f6e6f726d616c2e6a7067.jpg",
+     "credit": null,
+     "license": null,
+     "page": null
+    },
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.575,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra cerveza artesanal"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572463",
+    "name": "shelbys bar",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2513687,
+    "lon": -61.4749151,
+    "description": "Bar en la zona",
+    "image": {
+     "url": "https://pbs.twimg.com/media/FB8po0mWQAEqLwD.jpg",
+     "credit": null,
+     "license": null,
+     "page": null
+    },
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.592,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra cerveza artesanal mesas afuera al aire libre"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572467",
+    "name": "La flamenca bar",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2452768,
+    "lon": -61.4921539,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": "Abierto 24 h",
+    "rating": 2.8,
+    "distance_km": 0.816,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra mesas afuera al aire libre"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572468",
+    "name": "Irsh pub",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2465947,
+    "lon": -61.4934557,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.691,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra cerveza artesanal mesas afuera al aire libre"
+  },
+  {
+   "attraction": {
+    "id": "node/3682575239",
+    "name": "Tres56 Resto-Bar",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2532508,
+    "lon": -61.4891291,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.246,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572456",
+    "name": "Casa de Esteban",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2540965,
+    "lon": -61.4885952,
+    "description": "Bar en la zona",
+    "image": {
+     "url": "https://media-cdn.tripadvisor.com/media/photo-s/0d/77/f2/cf/fachada-y-entrada-principal.jpg",
+     "credit": null,
+     "license": null,
+     "page": null
+    },
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.331,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "regional regional típica chicken pollo bar tragos cerveza cervecería birra"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572460",
+    "name": "America Bar",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2529778,
+    "lon": -61.4695981,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 2.092,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra cerveza artesanal mesas afuera al aire libre"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572466",
+    "name": "Dionisio bar y restó",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2562036,
+    "lon": -61.4880116,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.526,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra cerveza artesanal"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572476",
+    "name": "Fronda bar",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2545527,
+    "lon": -61.489053,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.325,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra cerveza artesanal"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572477",
+    "name": "Luck Beer Bar",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2546805,
+    "lon": -61.4795127,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.172,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra cerveza artesanal"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572478",
+    "name": "Peñón del aguila",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2525048,
+    "lon": -61.4863316,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.501,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra cerveza artesanal"
+  },
+  {
+   "attraction": {
+    "id": "node/4334012045",
+    "name": "Cyrano",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2529214,
+    "lon": -61.4890585,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.244,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572465",
+    "name": "República Bar",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2506112,
+    "lon": -61.4832418,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.825,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra cerveza artesanal mesas afuera al aire libre"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572469",
+    "name": "Pinta Bar",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2571801,
+    "lon": -61.491881,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.51,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "regional regional típica bar tragos cerveza cervecería birra cerveza artesanal"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572471",
+    "name": "Alquimia",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.255579,
+    "lon": -61.492672,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.347,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra mesas afuera al aire libre"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572473",
+    "name": "Bar el pelado",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2514036,
+    "lon": -61.4984998,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.669,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra cerveza artesanal mesas afuera al aire libre"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572479",
+    "name": "Casa tomada",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2400037,
+    "lon": -61.5044953,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.861,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra cerveza artesanal"
+  },
+  {
+   "attraction": {
+    "id": "node/4971073521",
+    "name": "Anís del Mono",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2545807,
+    "lon": -61.4877385,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.428,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra"
+  },
+  {
+   "attraction": {
+    "id": "node/8347348918",
+    "name": "Flor del Norte",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2411972,
+    "lon": -61.4916978,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 1.268,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra"
+  },
+  {
+   "attraction": {
+    "id": "node/10080572472",
+    "name": "Artemio Bar",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2539492,
+    "lon": -61.4948663,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.345,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra"
+  },
+  {
+   "attraction": {
+    "id": "node/4892536421",
+    "name": "white rabbit restobar",
+    "category": "bares",
+    "category_label": "Bares",
+    "kind": "bar",
+    "lat": -31.2498964,
+    "lon": -61.4920176,
+    "description": "Bar en la zona",
+    "image": null,
+    "cost": {
+     "amount_usd": 12.0,
+     "source": "estimado",
+     "label": "Estimación por tipo de lugar"
+    },
+    "hours": null,
+    "rating": 2.6,
+    "distance_km": 0.303,
+    "website": null,
+    "wikidata": null
+   },
+   "keywords": "bar tragos cerveza cervecería birra"
   },
   {
    "attraction": {

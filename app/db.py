@@ -1,6 +1,7 @@
 """Conexión a PostgreSQL (pool de asyncpg), creación del esquema y carga inicial."""
 from __future__ import annotations
 
+import hashlib
 import json
 import logging
 from pathlib import Path
@@ -51,13 +52,20 @@ async def connect() -> asyncpg.Pool | None:
 
 
 async def load_seeds(conn: asyncpg.Connection) -> None:
-    """Carga data/*.json (zonas indexadas) si todavía no están en la base."""
+    """Carga data/*.json (zonas indexadas) si no están en la base o si el archivo cambió.
+
+    Se compara un hash SHA-256 del archivo con el guardado en `zones.seed_hash`: así,
+    reindexar una zona y desplegar alcanza para actualizar la base de producción.
+    """
     from app.services import places  # import local: places depende de este módulo
 
     for path in sorted(SEEDS_DIR.glob("*.json")):
-        seed = json.loads(path.read_text(encoding="utf-8"))
+        raw = path.read_bytes()
+        digest = hashlib.sha256(raw).hexdigest()
+        seed = json.loads(raw)
         slug = seed["zone"]["slug"]
-        if await conn.fetchval("SELECT 1 FROM zones WHERE slug = $1", slug):
+        if await conn.fetchval("SELECT seed_hash FROM zones WHERE slug = $1", slug) == digest:
             continue
         count = await places.store_zone(conn, seed["zone"], seed["places"])
+        await conn.execute("UPDATE zones SET seed_hash = $1 WHERE slug = $2", digest, slug)
         log.info("Zona %s indexada: %d lugares (desde %s)", slug, count, path.name)

@@ -167,3 +167,11 @@ def test_paid_attraction_kinds_keep_a_price():
     assert attractions.estimate_cost(cat, {"tourism": "zoo"}, None).amount_usd == 20
     assert attractions.estimate_cost(cat, {"tourism": "viewpoint"}, None).amount_usd == 0
     assert attractions.estimate_cost(cat, {"tourism": "attraction", "fee": "yes"}, None).amount_usd == 8
+
+
+def test_bars_only_enter_indexed_zones():
+    bar = {"name": "Pinta Bar", "amenity": "bar"}
+    assert osm.classify(bar) is None  # búsqueda en vivo: no
+    assert osm.classify(bar, exhaustive=True).slug == "bares"  # indexador: sí
+    assert '"bar"' not in osm.build_query(-31.25, -61.49, 3000, list(osm.CATEGORIES))
+    assert '"amenity"~"^(bar|pub|biergarten)$"' in osm.build_query(-31.25, -61.49, 3000, list(osm.CATEGORIES), exhaustive=True)

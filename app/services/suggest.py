@@ -73,12 +73,13 @@ Reglas:
 _CATEGORY_HINTS = {
     "restaurantes": ("restaurant", "comer", "comida", "cenar", "almorz", "parrill", "pizz", "hamburg", "sushi"),
     "cafes": ("cafe", "helad", "merienda", "desayun"),
-    "museos": ("museo", "galeria", "arte"),
+    "museos": ("museo", "galeria", "exposic"),
     "parques": ("parque", "plaza", "jardin", "verde"),
     "templos": ("iglesia", "templo", "catedral", "capilla", "parroquia"),
     "monumentos": ("monumento", "estatua", "historic", "memorial"),
-    "atracciones": ("mirador", "atraccion", "zoo", "acuario", "escultura"),
+    "atracciones": ("mirador", "atraccion", "zoo", "zoolog", "acuario", "escultura"),
     "cultura": ("teatro", "cine", "espectacul", "cultural", "obra", "show"),
+    "bares": ("bar", "bares", "cervez", "trago", "birra", "pub", "copas", "cerveceria"),
 }
 _FILLER = {
     "algun", "alguna", "alguno", "algunos", "algunas", "un", "una", "unos", "unas", "el", "la", "los", "las",
@@ -87,9 +88,14 @@ _FILLER = {
 }
 
 
+def _hint_matches(word: str, hint: str) -> bool:
+    """Raíces largas por prefijo ("helad" -> heladería); las cortas, palabra exacta ("bar", no "barato")."""
+    return word == hint if len(hint) <= 3 else word.startswith(hint)
+
+
 def fallback_interpretation(request: str) -> dict:
     words = [w for w in text.tokens(request) if w not in _FILLER]
-    categories = [slug for slug, hints in _CATEGORY_HINTS.items() if any(w.startswith(h) for w in words for h in hints)]
+    categories = [slug for slug, hints in _CATEGORY_HINTS.items() if any(_hint_matches(w, h) for w in words for h in hints)]
     return {"keywords": " ".join(words) or request, "categories": categories, "count": 1, "summary": request.strip()}
 
 
